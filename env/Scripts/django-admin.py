@@ -1,4 +1,4 @@
-#!C:\Users\tarlo\Desktop\Code\instamiligram\env\Scripts\python.exe
+#!c:\users\tarlo\desktop\instamiligram\env\scripts\python.exe
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 
