@@ -24,16 +24,34 @@
     <!-- Навигация -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">Instagram</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-link active" href="{% url 'instagram:home' %}">Главная</a>
-                </div>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'instagram:home' %}">Home</a>
+                  </li>
+                </ul>
+                <!-- <form class="d-flex">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form> -->
+              </div>
+              <div class="navbar-nav">
+                {% if user.is_authenticated %}
+                <a class="nav-item nav-link" href="{% url 'instagram:post-create' %}">New Post</a>
+                <a class="nav-item nav-link" href="{% url 'user:profile' %}">Profile</a>
+                <a class="nav-item nav-link" href="{% url 'logout' %}">Sign Out</a>
+                {% else %}
+                <a class="nav-item nav-link" href="{% url 'login' %}">Sign In</a>
+                <a class="nav-item nav-link" href="{% url 'user:register' %}">Sign Up</a>
+                {% endif %}
             </div>
-        </nav>
+            </div>
+          </nav>
     </header>
     <main role="main" class="container">
         <div class="row">

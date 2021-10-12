@@ -1,4 +1,21 @@
 {% extends 'instagram/layout.html' %}
 {% block content %}
-<h1>Hello world</h1>
+{% for post in posts %}
+<div class="card mb-3" style="max-width: 1920px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="{{ post.image.url }}" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+            <a class="mr-2" href="{% url 'instagram:user-posts' post.author.username %}">{{ post.author }}</a>
+            <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+            <div class="card-body">
+                <h5 class="card-title"><a class="article-title" href="{% url 'instagram:post-detail' post.id %}">{{post.title }}</a></h5>
+                <a class="mr-2" href="{% url 'instagram:user-posts' post.author.username %}">{{ post.author }}</a>
+                <p class="card-text">{{ post.content }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
 {% endblock content %}

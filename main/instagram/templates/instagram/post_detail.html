@@ -1,0 +1,17 @@
+{% extends 'instagram/layout.html' %}
+{% block content %}
+    <div class="card" style="width: 18rem;">
+        <a class="mr-2" href="{% url 'instagram:user-posts' object.author.username %}">{{ object.author }}</a>
+        <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+        <img src="{{ object.image.url }}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title"><a class="article-title" href="{% url 'instagram:post-detail' object.id %}">{{ object.title }}</a></h5>
+            <a class="mr-2" href="{% url 'instagram:user-posts' object.author.username %}">{{ object.author }}</a>
+            <p class="card-text">{{ object.content }}</p>
+        </div>
+        <div class="mt-2">
+            <a href="{% url 'instagram:post-update' object.id %}" class="btn btn-secondary mb-2">Update</a>
+            <a href="{% url 'instagram:post-delete' object.id %}" class="btn btn-secondary mb-2">Delete</a>
+        </div>
+    </div>
+{% endblock content %}
