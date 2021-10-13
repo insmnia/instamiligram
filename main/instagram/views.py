@@ -1,4 +1,5 @@
 from typing import List
+from django.http.response import JsonResponse
 from django.shortcuts import get_object_or_404, render, HttpResponse
 from django.views.generic import (
     View, ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -65,3 +66,21 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         post = self.get_object()
         return self.request.user == post.author
+
+
+class LikeView(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        result = ''
+        id = int(request.POST.get('postid'))
+        post = get_object_or_404(Post, id=id)
+        if post.likes.filter(id=request.user.id).exists():
+            post.likes.remove(request.user)
+            post.likes_count -= 1
+        else:
+            post.likes.add(request.user)
+            post.likes_count += 1
+
+        result = post.likes_count
+        post.save()
+
+        return JsonResponse({'result': result, })
