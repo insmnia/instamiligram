@@ -35,9 +35,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         post = self.get_object()
-        if self.request.user == post.author:
-            return True
-        return False
+        return self.request.user == post.author
 
 
 class PostDetailView(DetailView):
@@ -59,11 +57,11 @@ class UserPostListView(ListView):
         user = get_object_or_404(User, username=self.kwargs.get("username"))
         return Post.objects.filter(author=user).order_by('-date_posted')
 
+
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     success_url = '/'
+
     def test_func(self):
         post = self.get_object()
-        if self.request.user == post.author:
-            return True
-        return False
+        return self.request.user == post.author

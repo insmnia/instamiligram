@@ -1,17 +1,28 @@
 {% extends 'instagram/layout.html' %}
 {% block content %}
-    <div class="card" style="width: 18rem;">
-        <a class="mr-2" href="{% url 'instagram:user-posts' object.author.username %}">{{ object.author }}</a>
-        <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
-        <img src="{{ object.image.url }}" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title"><a class="article-title" href="{% url 'instagram:post-detail' object.id %}">{{ object.title }}</a></h5>
-            <a class="mr-2" href="{% url 'instagram:user-posts' object.author.username %}">{{ object.author }}</a>
-            <p class="card-text">{{ object.content }}</p>
+<div class="card mb-3" style="max-width: 1920px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="{{ object.image.url }}" class="img-fluid rounded-start" alt="...">
         </div>
-        <div class="mt-2">
-            <a href="{% url 'instagram:post-update' object.id %}" class="btn btn-secondary mb-2">Update</a>
-            <a href="{% url 'instagram:post-delete' object.id %}" class="btn btn-secondary mb-2">Delete</a>
+        <div class="col-md-8">
+            <a class="mr-2" href="{% url 'instagram:user-posts' object.author.username %}">{{ object.author }}</a>
+            <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+            <div class="card-body">
+                <h5 class="card-title"><a class="article-title"
+                        href="{% url 'instagram:post-detail' object.id %}">{{object.title }}</a></h5>
+                <a class="mr-2" href="{% url 'instagram:user-posts' object.author.username %}">{{ object.author }}</a>
+                <p class="card-text">{{ object.content }}</p>
+            </div>
+            {% if object.author == user %}
+            <div>
+                <a href="{% url 'instagram:post-update' object.id %}"
+                    class="btn btn-secondary btn-sm mt-1 mb-1">Update</a>
+                <a href="{% url 'instagram:post-delete' object.id %}"
+                    class="btn btn-secondary btn-sm mt-1 mb-1">Delete</a>
+            </div>
+            {% endif %}
         </div>
     </div>
+</div>
 {% endblock content %}
