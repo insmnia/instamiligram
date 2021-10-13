@@ -7,13 +7,13 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default="default.jpg", upload_to="profile_pics")
     bio = models.TextField(blank=True)
-    # followers = models.ForeignKey(
-    #     User, on_delete=models.CASCADE, related_name="followers", null=True, blank=True)
-    # followed = models.ForeignKey(
-    #     User, on_delete=models.CASCADE, related_name="followed", null=True, blank=True)
+    followers = models.ManyToManyField(User,blank=True,related_name='user_followers',symmetrical=False)
+    followers_count = models.IntegerField(default=0)
+    following_count = models.IntegerField(default=0)
+    following = models.ManyToManyField(User,blank=True,related_name='user_following',symmetrical=False)
 
     def __str__(self):
-        return f"{self.user.username} Profile"
+        return f"{self.user.username} Profile {self.followers.count()} {self.following.count()}"
 
     def save(self, *args, **kwargs):
         super(Profile, self).save(*args, **kwargs)

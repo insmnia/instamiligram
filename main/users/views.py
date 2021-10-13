@@ -1,3 +1,4 @@
+from django.http.response import JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import (
@@ -28,7 +29,7 @@ class CreateUserView(View):
         return self.get(request=request)
 
 
-class UserProfileView(LoginRequiredMixin, View):
+class HomeUserProfileView(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
         context = {
@@ -48,3 +49,33 @@ class UserProfileView(LoginRequiredMixin, View):
             messages.success(request, message="Updated!")
             return redirect("user:profile")
         return self.get(request)
+
+
+class UserProfileView(View):
+    def get(self, request, username, *args, **kwargs):
+        return render(request, "users/profile.html", {"user": User.objects.filter(username=username).first()})
+
+
+class FollowUserView(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        target_id = int(request.POST.get('id'))
+        target_user = User.objects.filter(id=target_id).first()
+        initiator_user = self.request.user
+        # инициатор подписывается на таргет
+        # пользователь уже подписан -> отписка
+        if target_user.profile.followers.filter(id=initiator_user.id).exists():
+            initiator_user.profile.following_count -= 1
+            target_user.profile.followers_count -= 1
+            target_user.profile.followers.remove(initiator_user)
+            initiator_user.profile.following.remove(target_user)
+        # подписка
+        else:
+            initiator_user.profile.following.add(target_user)
+            target_user.profile.followers.add(initiator_user)
+            initiator_user.profile.following_count += 1
+            target_user.profile.followers_count += 1
+
+        result = target_user.profile.followers_count
+        initiator_user.profile.save()
+        target_user.profile.save()
+        return JsonResponse({"result":result})
