@@ -10,8 +10,8 @@ class Post(models.Model):
     image = models.ImageField(upload_to="post_pics", default="default.jpg")
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="author")
-    # likes = models.ForeignKey(
-    #     User, on_delete=models.CASCADE, related_name="likes")
+    likes = models.ManyToManyField(User,related_name="like",default=None,blank=True)
+    likes_count = models.IntegerField(default=0)
     date_posted = models.DateTimeField(default=timezone.now)
 
     def save(self, *args, **kwargs):
