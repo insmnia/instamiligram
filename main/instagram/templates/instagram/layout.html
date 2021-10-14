@@ -21,6 +21,9 @@
 
 <body>
   <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
   </style>
   <!-- Навигация -->
   <header>
@@ -56,15 +59,31 @@
     </nav>
   </header>
   <main role="main" class="container">
-    <div class="row" style="display: flex;">
-      {% if messages %}
-      {% for message in messages %}
-      <div class="alert alert-{{message.tags}}">
-        {{message}}
+    <div class="row">
+      <div class="col-md-8">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}}">
+          {{message}}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% block content %}{% endblock %}
       </div>
-      {% endfor %}
-      {% endif %}
-      {% block content %}{% endblock %}
+      <div class="col-md-4">
+        <div class="content-section">
+          <img src="{{ user.profile.image.url }}" alt="..." style="width: 36px;height: 36px;overflow: hidden;border-radius: 50%;margin-right: 5px;">
+          <b style="font-size:medium;">{{user.username}}</b>
+          <p class='text-muted'>You can put any information here you'd like.
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-light">Latest Posts</li>
+            <li class="list-group-item list-group-item-light">Announcements</li>
+            <li class="list-group-item list-group-item-light">Calendars</li>
+            <li class="list-group-item list-group-item-light">etc</li>
+          </ul>
+          </p>
+        </div>
+      </div>
     </div>
   </main>
   <!-- Optional JavaScript -->

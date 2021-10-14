@@ -70,17 +70,18 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 class LikeView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
-        result = ''
         id = int(request.POST.get('postid'))
         post = get_object_or_404(Post, id=id)
         if post.likes.filter(id=request.user.id).exists():
             post.likes.remove(request.user)
             post.likes_count -= 1
+            liked=False
         else:
             post.likes.add(request.user)
             post.likes_count += 1
+            liked=True
 
         result = post.likes_count
         post.save()
 
-        return JsonResponse({'result': result, })
+        return JsonResponse({'result': result,"liked":liked })

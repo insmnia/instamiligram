@@ -14,14 +14,14 @@ class Post(models.Model):
     likes_count = models.IntegerField(default=0)
     date_posted = models.DateTimeField(default=timezone.now)
 
-    def save(self, *args, **kwargs):
-        super(Post, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     super(Post, self).save(*args, **kwargs)
 
-        img = Image.open(self.image.path)
-        if img.height > 300 or img.width > 300:
-            out = (300, 300)
-            img.thumbnail(out)
-            img.save(self.image.path)
+    #     img = Image.open(self.image.path)
+    #     if img.height > 300 or img.width > 300:
+    #         out = (300, 300)
+    #         img.thumbnail(out)
+    #         img.save(self.image.path)
 
     def __str__(self):
         return f"{self.title} {self.author}"
