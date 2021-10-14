@@ -11,7 +11,6 @@ class Post(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="author")
     likes = models.ManyToManyField(User,related_name="like",default=None,blank=True)
-    likes_count = models.IntegerField(default=0)
     date_posted = models.DateTimeField(default=timezone.now)
 
     # def save(self, *args, **kwargs):
@@ -24,7 +23,18 @@ class Post(models.Model):
     #         img.save(self.image.path)
 
     def __str__(self):
-        return f"{self.title} {self.author}"
+        return f"Post by {self.author}"
 
     def get_absolute_url(self):
         return reverse("instagram:post-detail", kwargs={"pk": self.pk})
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name="comments")
+    content = models.TextField()
+    created_on = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        ordering = ['created_on']
+
+    def __str__(self):
+        return f"Comment on {self.post}"

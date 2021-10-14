@@ -1,12 +1,15 @@
-from typing import List
-from django.http.response import JsonResponse
-from django.shortcuts import get_object_or_404, render, HttpResponse
+from typing import Any, Dict, List
+from django.http.response import HttpResponseRedirect, JsonResponse
+from django.shortcuts import get_object_or_404, redirect, render, HttpResponse
 from django.views.generic import (
     View, ListView, DetailView, CreateView, UpdateView, DeleteView
 )
+from .forms import CommentForm
 from .models import Post
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
+from django.contrib import messages
+from django.urls import reverse
 
 
 class PostListView(ListView):
@@ -39,8 +42,28 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return self.request.user == post.author
 
 
-class PostDetailView(DetailView):
-    model = Post
+class PostDetailView(View):
+    def get(self, request, id, *args, **kwargs):
+        post = Post.objects.filter(id=id).first()
+        comments = post.comments.all()
+        return render(
+            request,
+            "instagram/post_detail.html",
+            context={
+                'post': post,
+                'form': CommentForm(),
+                'comments': comments,
+            }
+        )
+
+    def post(self, request, id, *args, **kwargs):
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = Post.objects.filter(id=id).first()
+            comment.save()
+            messages.success(request, message="Commented!")
+            return HttpResponseRedirect(reverse('instagram:post-detail', kwargs={"id": id}))
 
 
 class AboutView(View):
@@ -74,14 +97,12 @@ class LikeView(LoginRequiredMixin, View):
         post = get_object_or_404(Post, id=id)
         if post.likes.filter(id=request.user.id).exists():
             post.likes.remove(request.user)
-            post.likes_count -= 1
-            liked=False
+            liked = False
         else:
             post.likes.add(request.user)
-            post.likes_count += 1
-            liked=True
+            liked = True
 
-        result = post.likes_count
+        result = len(post.likes.all())
         post.save()
 
-        return JsonResponse({'result': result,"liked":liked })
+        return JsonResponse({'result': result, "liked": liked})
