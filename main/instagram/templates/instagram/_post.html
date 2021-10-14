@@ -1,6 +1,6 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/card.css' %}">
-{% load instagram-tags %}
+{% load instagram_tags %}
 <div class="row justify-content-md-center">
     <div class="blog-card blog-card-blog" style="max-width:75%; max-height: fit-content;">
         <div class="blog-card-image">
@@ -50,7 +50,8 @@
             <div class="ftr">
                 <div class="author">
                     <a href="{% url 'user:u-profile' object.author.username %}"> <img
-                            src="{{object.author.profile.image.url}}" alt="..." class="avatar img-raised" style="max-width: 36px;max-height: 36px;">
+                            src="{{object.author.profile.image.url}}" alt="..." class="avatar img-raised"
+                            style="max-width: 36px;max-height: 36px;">
                         <span>{{ object.author.username }}</span> </a>
                 </div>
                 <div class="stats"> <i class="far fa-clock"></i> {{ object.date_posted|date:"F d, Y" }} </div>
