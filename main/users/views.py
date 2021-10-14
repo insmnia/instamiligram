@@ -63,19 +63,22 @@ class FollowUserView(LoginRequiredMixin, View):
         initiator_user = self.request.user
         # инициатор подписывается на таргет
         # пользователь уже подписан -> отписка
+        flw = False
         if target_user.profile.followers.filter(id=initiator_user.id).exists():
             initiator_user.profile.following_count -= 1
             target_user.profile.followers_count -= 1
             target_user.profile.followers.remove(initiator_user)
             initiator_user.profile.following.remove(target_user)
+            flw=False
         # подписка
         else:
             initiator_user.profile.following.add(target_user)
             target_user.profile.followers.add(initiator_user)
             initiator_user.profile.following_count += 1
             target_user.profile.followers_count += 1
+            flw=True
 
         result = target_user.profile.followers_count
         initiator_user.profile.save()
         target_user.profile.save()
-        return JsonResponse({"result":result})
+        return JsonResponse({"result":result,'flw':flw})

@@ -67,7 +67,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
         'libraries':{
-            'tags':'instagram.templatetags.tags'
+            'instagram_tags':'instagram.templatetags.tags',
+            'user_tags':'users.templatetags.tags'
         }
         },
     },

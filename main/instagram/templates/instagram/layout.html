@@ -72,8 +72,8 @@
       </div>
       <div class="col-md-4">
         <div class="content-section">
-          <img src="{{ user.profile.image.url }}" alt="..." style="width: 36px;height: 36px;overflow: hidden;border-radius: 50%;margin-right: 5px;">
-          <b style="font-size:medium;">{{user.username}}</b>
+          <img src="{{ request.user.profile.image.url }}" alt="..." style="width: 36px;height: 36px;overflow: hidden;border-radius: 50%;margin-right: 5px;">
+          <b style="font-size:medium;">{{request.user.username}}</b>
           <p class='text-muted'>You can put any information here you'd like.
           <ul class="list-group">
             <li class="list-group-item list-group-item-light">Latest Posts</li>
