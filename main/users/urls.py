@@ -1,6 +1,6 @@
 from .views import (
     CreateUserView,
-    HomeUserProfileView,
+    UserSettingsView,
     FollowUserView,
     UserProfileView
 )
@@ -10,7 +10,7 @@ app_name = "user"
 
 urlpatterns = [
     path("register/", CreateUserView.as_view(), name="register"),
-    path("profile/", HomeUserProfileView.as_view(), name="profile"),
-    path("follow/",FollowUserView.as_view(),name='follow'),
-    path('uprofile/<str:username>',UserProfileView.as_view(),name="u-profile")
+    path("profile/<str:username>", UserProfileView.as_view(), name="profile"),
+    path("follow/", FollowUserView.as_view(), name='follow'),
+    path('settings/<str:username>', UserSettingsView.as_view(), name="settings")
 ]

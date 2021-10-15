@@ -29,14 +29,14 @@ class CreateUserView(View):
         return self.get(request=request)
 
 
-class HomeUserProfileView(LoginRequiredMixin, View):
+class UserSettingsView(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
         context = {
             "user_form": UpdateUserForm(instance=request.user),
             "profile_form": UpdateProfileForm(instance=request.user)
         }
-        return render(request, 'users/profile.html', context)
+        return render(request, 'users/settings.html', context)
 
     def post(self, request, *args, **kwargs):
         u_form = UpdateUserForm(request.POST, instance=request.user)
@@ -69,16 +69,16 @@ class FollowUserView(LoginRequiredMixin, View):
             target_user.profile.followers_count -= 1
             target_user.profile.followers.remove(initiator_user)
             initiator_user.profile.following.remove(target_user)
-            flw=False
+            flw = False
         # подписка
         else:
             initiator_user.profile.following.add(target_user)
             target_user.profile.followers.add(initiator_user)
             initiator_user.profile.following_count += 1
             target_user.profile.followers_count += 1
-            flw=True
+            flw = True
 
         result = target_user.profile.followers_count
         initiator_user.profile.save()
         target_user.profile.save()
-        return JsonResponse({"result":result,'flw':flw})
+        return JsonResponse({"result": result, 'flw': flw})

@@ -12,11 +12,30 @@ from django.contrib import messages
 from django.urls import reverse
 
 
-class PostListView(ListView):
-    model = Post
-    context_object_name = "posts"
-    template_name = "instagram/home.html"
-    ordering = ['-date_posted']
+class HomeView(ListView):
+
+    def get(self, request, *args, **kwargs):
+        posts = []
+        # список постов пользователей, НА которых подписан пользователь
+        for u in request.user.profile.following.all():
+            posts.extend(Post.objects.filter(author=u).all())
+        return render(
+            request,
+            "instagram/home.html",
+            context={
+                'posts': posts,
+                'form': CommentForm()
+            }
+        )
+
+    def post(self, request, *args, **kwargs):
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = Post.objects.filter(id=id).first()
+            comment.save()
+            messages.success(request, message="Commented!")
+        return self.get(request)
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
@@ -43,8 +62,8 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 
 class PostDetailView(View):
-    def get(self, request, id, *args, **kwargs):
-        post = Post.objects.filter(id=id).first()
+    def get(self, request, pk, *args, **kwargs):
+        post = Post.objects.filter(id=pk).first()
         comments = post.comments.all()
         return render(
             request,
@@ -56,14 +75,14 @@ class PostDetailView(View):
             }
         )
 
-    def post(self, request, id, *args, **kwargs):
+    def post(self, request, pk, *args, **kwargs):
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
-            comment.post = Post.objects.filter(id=id).first()
+            comment.post = Post.objects.filter(id=pk).first()
             comment.save()
             messages.success(request, message="Commented!")
-            return HttpResponseRedirect(reverse('instagram:post-detail', kwargs={"id": id}))
+            return HttpResponseRedirect(reverse('instagram:post-detail', kwargs={"pk": pk}))
 
 
 class AboutView(View):
@@ -106,3 +125,21 @@ class LikeView(LoginRequiredMixin, View):
         post.save()
 
         return JsonResponse({'result': result, "liked": liked})
+
+
+class GlobalPostView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        return render(
+            request,
+            "instagram/home.html",
+            context={
+                'posts': Post.objects.all(),
+            }
+        )
+
+
+class SearchUser(View):
+    def post(self, request, *args, **kwargs):
+        name = request.POST.get('name')
+        users = User.objects.filter(username__contains=name).all()
+        return JsonResponse({'users': users})

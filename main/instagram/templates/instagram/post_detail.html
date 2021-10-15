@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{% static 'css/card.css' %}">
 {% load instagram_tags %}
 <div class="blog-card-image">
-    <img class="img" src="{{ post.image.url }}"  style="max-width: 100%;max-height: 100%;">
+    <img class="img" src="{{ post.image.url }}" style="max-width: 100%;max-height: 100%;">
     <div class="ripple-cont"></div>
 </div>
 <div class="row justify-content-md-center" style="max-height: fit-content;">
@@ -50,27 +50,23 @@
                 </svg>
                 {% endif %}
                 <span class="text-muted">{{ post.comments.count }}</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-chat-left-dots" viewBox="0 0 16 16">
-                    <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                    <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                  </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                    class="bi bi-chat-left-dots" viewBox="0 0 16 16">
+                    <path
+                        d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                    <path
+                        d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                </svg>
             </p>
             <div class="ftr">
                 <div class="author">
-                    <a href="{% url 'user:u-profile' post.author.username %}"> <img
+                    <a href="{% url 'user:profile' username=post.author.username %}"> <img
                             src="{{post.author.profile.image.url}}" alt="..." class="avatar img-raised"
                             style="max-width: 36px;max-height: 36px;">
                         <span>{{ post.author.username }}</span> </a>
                 </div>
                 <div class="stats"> <i class="far fa-clock"></i> {{ post.date_posted|date:"F d, Y" }} </div>
             </div>
-            <hr>
-            {% for comment in comments %}
-            <div class="row">
-                <small class="text-muted">{{comment.post.author.username}}</small>
-                <div class="col-sm">{{ comment.content }}</div>
-            </div>
-            {% endfor %}
             <form action="" method="POST" enctype="">
                 {%csrf_token%}
                 <fieldset class="form-group">
@@ -83,6 +79,13 @@
                     <button class="btn btn-outline-info" type="submit">Post</button>
                 </div>
             </form>
+            <hr>
+            {% for comment in comments %}
+            <div class="row">
+                <small class="text-muted">{{comment.post.author.username}}</small>
+                <div class="col-sm">{{ comment.content }}</div>
+            </div>
+            {% endfor %}
         </div>
     </div>
 </div>
