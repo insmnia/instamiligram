@@ -8,4 +8,6 @@ def have_liked(post,user,*args,**kwargs):
 
 @register.simple_tag
 def get_post_comments(post,*args,**kwargs):
-    return post.comments.all()[len(post.comments.all())-2:]
+    if len(post.comments.all())>1:
+        return post.comments.all()[len(post.comments.all())-1:]
+    return []

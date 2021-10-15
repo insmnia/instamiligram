@@ -4,13 +4,13 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/card.css' %}">
 {% load instagram_tags %}
-<div class="row justify-content-md-center">
+<div class="blog-card-image">
+    <img class="img" src="{{ post.image.url }}"  style="max-width: 100%;max-height: 100%;">
+    <div class="ripple-cont"></div>
+</div>
+<div class="row justify-content-md-center" style="max-height: fit-content;">
     <div class="blog-card blog-card-blog">
-        <div class="blog-card-image" style="max-height:50%;">
-            <img class="img" src="{{ post.image.url }}">
-            <div class="ripple-cont"></div>
-        </div>
-        <div class="blog-table">
+        <div class="blog-table" style="max-height: 100%;">
             <h4 class="blog-card-caption">
                 <a class="article-title" href="{% url 'instagram:post-detail' post.id %}">{{post.title }}</a>
             </h4>

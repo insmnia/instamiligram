@@ -2,15 +2,65 @@
 {% load crispy_forms_tags %}
 {% load tags %}
 {% block content %}
-<div class="row justify-content-md-center">
-    <div class="card mb-3" style="max-width: 75%;">
-        <div class="row g-0">
-            <div class="col-md-4">
-                <img src="{{ user.profile.image.url }}" class="img-fluid rounded-start" alt="...">
-            </div>
-            <div class="col-md-8">
+<style>
+    .profile-head {
+        transform: translateY(5rem)
+    }
 
-                <b style="font-size:24px">{{ user.username }}</b>
+    .cover {
+        background-image: url(https://images.unsplash.com/photo-1530305408560-82d13781b33a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80);
+        background-size: cover;
+        background-repeat: no-repeat
+    }
+
+    body {
+        background: #654ea3;
+        background: linear-gradient(to right, #e96443, #904e95);
+        min-height: 100vh;
+        overflow-x: hidden
+    }
+</style>
+<!-- user vars -->
+{% get_user_posts user as posts %}
+<div class="row py-5 px-4">
+    <div class="col-md-5 mx-auto">
+        <div class="bg-white shadow rounded overflow-hidden">
+            <div class="px-4 pt-0 pb-4 cover">
+                <div class="media align-items-end profile-head">
+                    <div class="profile mr-3"><img src="{{ user.profile.image.url }}" alt="..." width="130"
+                            class="rounded mb-2 img-thumbnail">
+                        {% if request.user == user %}
+
+                        <a href="#" class="btn btn-outline-dark btn-sm btn-block">Edit profile</a>
+                        {% endif %}
+                    </div>
+                    <div class="media-body mb-5" style="color:black">
+                        <h4 class="mt-0 mb-0">{{ user.username }}</h4>
+                        <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i>{{user.first_name}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-light p-4 d-flex justify-content-end text-center">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item">
+                        <h5 class="font-weight-bold mb-0 d-block">{{posts.count}}</h5><small class="text-muted"> <i
+                                class="fas fa-image mr-1"></i>Posts</small>
+                    </li>
+                    <li class="list-inline-item">
+                        <h5 class="font-weight-bold mb-0 d-block">{{user.profile.followers.count}}</h5><small
+                            class="text-muted"> <i class="fas fa-user mr-1"></i>Followers</small>
+                    </li>
+                    <li class="list-inline-item">
+                        <h5 class="font-weight-bold mb-0 d-block">{{user.profile.following.count}}</h5><small
+                            class="text-muted"> <i class="fas fa-user mr-1"></i>Following</small>
+                    </li>
+                </ul>
+            </div>
+            <div class="px-4 py-3">
+                <h5 class="mb-0">About</h5>
+                <div class="p-4 rounded shadow-sm bg-light">
+                    <p class="font-italic mb-0">{{user.profile.bio}}</p>
+                </div>
                 {% if request.user != user %}
                 {% is_following request.user user as flw %}
                 {% if flw %}
@@ -33,18 +83,25 @@
                     </svg></button>
                 {% endif %}
                 {% endif %}
-                <br>
-                <small class="text-muted">{{ user.email }}</small>
-                <div class="card-body">
-                    <p class="card-text" id="followers">{{user.profile.followers_count}} followers</p>
-                    <p class="card-text">{{user.profile.following_count}} following</p>
-                    <p>{{user.profile.bio}}</p>
+            </div>
+            <div class="py-4 px-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h5 class="mb-0">Recent posts</h5><a href="{% url 'instagram:user-posts' username=user.username %}"
+                        class="btn btn-link text-muted">Show all</a>
+                </div>
+                <div class="row">
+                    {% for post in posts %}
+                    <div class="col-lg-6 mb-2 pr-lg-1">
+                        <img src="{{post.image.url}}" alt="" class="img-fluid rounded shadow-sm">
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
 </div>
-{% if request.user == user %}
+<!-- Forms -->
+<!-- {% if request.user == user and user_form %}
 
 <form action="" method="POST" enctype="multipart/form-data">
     {%csrf_token%}
@@ -59,7 +116,7 @@
         <button class="btn btn-outline-info" type="submit">Update</button>
     </div>
 </form>
-{% endif %}
+{% endif %} -->
 <script>
     function getCookie(name) {
         var cookieValue = null;
