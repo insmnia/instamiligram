@@ -2,85 +2,113 @@
 {% load static %}
 {% load instagram_tags %}
 <link rel="stylesheet" href="{% static 'css/card.css' %}">
-<!-- <div class="col-md-4"></div> -->
-<!-- <div class="row container d-flex justify-content-center" style="padding-bottom: none; margin-bottom: 5%;">
-    <div class="col-md-8"> -->
-<div class="box box-widget">
-    <div class="box-header with-border">
-        <div class="user-block"> <img class="img-circle" src="{{object.author.profile.image.url}}" alt="User Image">
-            <span class="username"><a href="{% url 'user:profile' username=object.author.username %}"
-                    data-abc="true">{{object.author.username}}</a></span>
-            <span class="description">{{object.date_posted}}</span>
-        </div>
-        <div class="box-tools">
-        </div>
-    </div>
-    <div class="box-body"> <img class="img-responsive pad" src="{{ object.image.url }}" alt="Photo">
-        <p>{{object.content}}</p> <span class="pull-right text-muted">
-            <span class="text-muted" id="like_count{{object.id}}">{{ object.likes.count }}</span>
-            {% if user.is_authenticated %}
-            {% have_liked object user as user_has_liked %}
-            {% if user_has_liked %}
-            <button class="btn btn-link text-dark p-0 border-0 btn-outline-light" id="like-button{{object.id}}"
-                value="{{ object.id }}">
-
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                    class="bi bi-heart-fill" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" id="like-icon{{object.id}}"
-                        d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-                </svg>
-            </button>
-            {% else %}
-            <button class="btn btn-link text-dark p-0 border-0 btn-outline-light" id="like-button{{object.id}}"
-                value="{{ object.id }}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-heart"
-                    viewBox="0 0 16 16">
-                    <path id="like-icon{{object.id}}"
-                        d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                </svg>
-            </button>
-            {% endif %}
-            {% else %}
-            <a class="btn btn-link text-dark p-0 border-0 btn-outline-light" href="{% url 'user:register' %}"></a>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-heart"
-                viewBox="0 0 16 16">
-                <path
-                    d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-            </svg>
-            {% endif %}<span class="text-muted">{{ object.comments.count }}</span>
-            <a href="{% url 'instagram:post-detail' pk=object.id %}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                    class="bi bi-chat-left-dots" viewBox="0 0 16 16">
-                    <path
-                        d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
-                    <path
-                        d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
-                </svg>
-            </a></span>
-    </div>
-    <div class="box-footer box-comments">
-        {% get_post_comments object as comments %}
-        {% for comment in comments %}
-        <div class="box-comment"> <img class="img-circle img-sm" src="{{comment.post.author.profile.image.url}}"
-                alt="User Image">
-            <div class="comment-text"> <span class="username"> {{ comment.post.author.username }} <span
-                        class="text-muted pull-right">{{comment.created_on}}</span> </span> {{comment.content }}
+<div class="row container d-flex justify-content-center" style="padding-bottom: none; margin-bottom: 5%;">
+    <div class="col-md-6">
+        <div class="box box-widget">
+            <div class="box-header with-border">
+                <div class="user-block"> <img class="img-circle" src="{{object.author.profile.image.url}}"
+                        alt="User Image">
+                    <span class="username"><a href="{% url 'user:profile' object.author.username %}"
+                            data-abc="true">{{object.author.username}}</a></span>
+                    <span class="description">{{object.date_posted}}</span>
+                </div>
+                <div class="box-tools">
+                </div>
             </div>
-        </div>
-        {% endfor %}
-    </div>
-    <!-- TODO сделать форму для комментов -->
-    <!-- <div class="box-footer">
+            <div class="box-body"> <img class="img-responsive pad" src="{{ object.image.url }}" alt="Photo">
+                <p>{{object.content}}</p> <span class="pull-right text-muted">
+                    <span class="text-muted" id="like_count">{{ object.likes.count }}</span>
+                    {% if user.is_authenticated %}
+                    {% have_liked object user as user_has_liked %}
+                    {% if user_has_liked %}
+                    <button class="btn btn-link text-dark p-0 border-0 btn-outline-light" id="like-button"
+                        value="{{ object.id }}">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            class="bi bi-heart-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" id="like-icon"
+                                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                        </svg>
+                    </button>
+                    {% else %}
+                    <button class="btn btn-link text-dark p-0 border-0 btn-outline-light" id="like-button"
+                        value="{{ object.id }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            class="bi bi-heart" viewBox="0 0 16 16">
+                            <path id="like-icon"
+                                d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                        </svg>
+                    </button>
+                    {% endif %}
+                    {% else %}
+                    <a class="btn btn-link text-dark p-0 border-0 btn-outline-light"
+                        href="{% url 'user:register' %}"></a>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                        class="bi bi-heart" viewBox="0 0 16 16">
+                        <path
+                            d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                    </svg>
+                    <!-- Сохранение понравившихся постов -->
+                    {% have_saved object user as user_have_saved %}
+                    {% if user_have_saved %}
+                    <button class="btn btn-link text-dark p-0 border-0 btn-outline-light" id="like-button"
+                        value="{{ object.id }}">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-bookmark-check-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm8.854-9.646a.5.5 0 0 0-.708-.708L7.5 7.793 6.354 6.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+                        </svg>
+                    </button>
+                    {% else %}
+                    <button class="btn btn-link text-dark p-0 border-0 btn-outline-light" id="like-button"
+                        value="{{ object.id }}">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-bookmark-plus" viewBox="0 0 16 16">
+                            <path
+                                d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
+                            <path
+                                d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4z" />
+                        </svg>
+                    </button>
+                    {% endif %}
+                    {% endif %}
+                    <span class="text-muted">{{ object.comments.count }}</span>
+                    <a href="{% url 'instagram:post-detail' id=object.id %}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            class="bi bi-chat-left-dots" viewBox="0 0 16 16">
+                            <path
+                                d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                            <path
+                                d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                        </svg>
+                    </a></span>
+            </div>
+            <div class="box-footer box-comments">
+                {% get_post_comments object as comments %}
+                {% for comment in comments %}
+                <div class="box-comment"> <img class="img-circle img-sm" src="{{comment.post.author.profile.image.url}}"
+                        alt="User Image">
+                    <div class="comment-text"> <span class="username"> {{ comment.post.author.username }} <span
+                                class="text-muted pull-right">{{comment.created_on}}</span> </span> {{comment.content }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <!-- TODO сделать форму для комментов -->
+            <!-- <div class="box-footer">
                 <img class="img-responsive img-circle img-sm" src="{{request.user.profile.image.url}}" alt="Alt Text">
-                <form action="" method="post">
+                <form action="#" method="post">
                     <div class="img-push">
                         {% csrf_token %}
                         {{form|crispy}}
                 </form>
             </div> -->
+        </div>
+    </div>
 </div>
-<!-- </div>
-</div> -->
+</div>
 <script>
     function getCookie(name) {
         var cookieValue = null;
@@ -97,18 +125,18 @@
         }
         return cookieValue;
     }
-    $(document).on('click', '#like-button{{object.id}}', function (e) {
+    $(document).on('click', '#like-button', function (e) {
         e.preventDefault();
         $.ajax({
             type: 'POST',
             url: '{% url "instagram:like" %}',
             data: {
-                postid: $('#like-button{{object.id}}').val(),
+                postid: $('#like-button').val(),
                 csrfmiddlewaretoken: getCookie('csrftoken'),
                 action: 'post'
             },
             success: function (json) {
-                document.getElementById("like_count{{object.id}}").innerHTML = json['result'];
+                document.getElementById("like_count").innerHTML = json['result'];
                 attr = ''
                 if (json['liked']) {
                     attr = "M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
@@ -116,17 +144,11 @@
                 else {
                     attr = 'm8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z'
                 }
-                document.getElementById("like-icon{{object.id}}").setAttribute("d", attr);
+                document.getElementById("like-icon").setAttribute("d", attr);
             },
             error: function (xhr, errmsg, err) {
 
             }
         });
     })
-    $('#commentMsg').on('keyup', function (event) {
-        if (event.which == 13 && !event.shiftKey) {
-            $(this).closest('form').submit();
-        }
-    }
-    )
 </script>

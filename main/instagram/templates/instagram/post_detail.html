@@ -18,7 +18,6 @@
                 {{ post.content }}
             </p>
             <p class="card-text">
-                <!-- TODO лайки появляются не сразу -->
                 <span class="text-muted" id="like_count">{{ post.likes.count }}</span>
                 {% if request.user.is_authenticated %}
                 {% have_liked post request.user as user_has_liked %}

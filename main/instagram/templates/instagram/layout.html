@@ -37,11 +37,37 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'instagram:home' %}">Home</a>
+              <form class="d-flex" style="margin-top:10px">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="isearch"
+                  style="position: relative;" data-toggle="dropdown">
+                <div class="dropdown">
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" id="drp">
+                  </ul>
+                </div>
+                <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
+              </form>
             </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-item nav-link" href="{% url 'instagram:post-create' %}">New Post</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-item nav-link" href="{% url 'user:profile' username=request.user.username %}">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-item nav-link" href="{% url 'logout' %}">Sign Out</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-item nav-link" href="{% url 'user:register' %}">Sign Up</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-item nav-link" href="{% url 'login' %}">Sign In</a>
+            </li>
+            {% endif %}
           </ul>
         </div>
-        <div class="navbar-nav">
+        <!-- <div class="navbar-nav">
           <form class="d-flex">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="isearch"
               style="position: relative;" data-toggle="dropdown">
@@ -49,7 +75,6 @@
               <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" id="drp">
               </ul>
             </div>
-            <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
           </form>
           {% if user.is_authenticated %}
           <a class="nav-item nav-link" href="{% url 'instagram:post-create' %}">New Post</a>
@@ -59,7 +84,7 @@
           <a class="nav-item nav-link" href="{% url 'login' %}">Sign In</a>
           <a class="nav-item nav-link" href="{% url 'user:register' %}">Sign Up</a>
           {% endif %}
-        </div>
+        </div> -->
       </div>
     </nav>
   </header>
@@ -84,8 +109,7 @@
           <b style="font-size:medium;">{{request.user.username}}</b>
           <p class='text-muted'>
           <ul class="list-group">
-            <li class="list-group-item list-group-item-light"><a
-                href="{% url 'user:settings' username=request.user.username %}"
+            <li class="list-group-item list-group-item-light"><a href="{% url 'user:settings' %}"
                 style="text-decoration: none;color:black">Change profile</a></li>
             <li class="list-group-item list-group-item-light"><a href="{% url 'instagram:explore' %}"
                 style="text-decoration: none;color:black">Explore</a></li>
@@ -143,7 +167,6 @@
               element,
               '</a></li>'
             ]
-            console.log(arr.join(""))
             search.insertAdjacentHTML(
               'beforeend',
               arr.join("")

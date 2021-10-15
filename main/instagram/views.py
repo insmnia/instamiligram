@@ -10,9 +10,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.urls import reverse
+from django.core.paginator import Paginator
 
 
-class HomeView(ListView):
+class HomeView(LoginRequiredMixin, ListView):
 
     def get(self, request, *args, **kwargs):
         posts = []
@@ -24,7 +25,6 @@ class HomeView(ListView):
             "instagram/home.html",
             context={
                 'posts': posts,
-                'form': CommentForm()
             }
         )
 
@@ -129,11 +129,16 @@ class LikeView(LoginRequiredMixin, View):
 
 class GlobalPostView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
+        posts = Post.objects.all().order_by('-date_posted')
+        paginator = Paginator(posts, 1)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
         return render(
             request,
             "instagram/home.html",
             context={
-                'posts': Post.objects.all(),
+                'posts': posts,
+                'page_obj': page_obj
             }
         )
 

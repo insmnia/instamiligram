@@ -13,3 +13,7 @@ def get_post_comments(post, *args, **kwargs):
     if len(post.comments.all()) >= 1:
         return post.comments.all()[len(post.comments.all())-1:]
     return []
+
+@register.simple_tag
+def have_saved(post,user,*args,**kwargs):
+    return user.profile.saved_posts.filter(id=post.id).exists()
