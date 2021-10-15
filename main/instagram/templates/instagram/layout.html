@@ -43,7 +43,12 @@
         </div>
         <div class="navbar-nav">
           <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="isearch"
+              style="position: relative;" data-toggle="dropdown">
+            <div class="dropdown">
+              <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" id="drp">
+              </ul>
+            </div>
             <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
           </form>
           {% if user.is_authenticated %}
@@ -116,23 +121,39 @@
     }
     return cookieValue;
   }
-  $(document).on('keypress', '#search', (e) => {
-    $.ajax({
-      type: 'POST',
-      url: '{% url "instagram:search" %}',
-      data: {
-        'name': $('#search').value,
-        csrfmiddlewaretoken: getCookie('csrftoken'),
-        action: 'post'
-      },
-      success: (json) => {
-        console.log(json);
-      },
-      error: function (xhr, errmsg, err) {
+  $(document).on('keyup', '#isearch', (e) => {
+    if ($("#isearch").val() != '') {
+      $.ajax({
+        type: 'POST',
+        url: '{% url "instagram:search" %}',
+        data: {
+          name: $('#isearch').val(),
+          csrfmiddlewaretoken: getCookie('csrftoken'),
+          action: 'post'
+        },
+        success: (json) => {
+          search = document.querySelector('#drp')
+          $(search).empty();
+          json['users'].forEach(element => {
+            console.log(element)
+            search.insertAdjacentHTML(
+              'beforeend',
+              '<li role="presentation"><a role="menuitem" tabindex="-1" href="{% url "instagram:home" %}">' + element + '</a></li>',
 
-      }
-    });
+            );
+          });
+        },
+        error: function (xhr, errmsg, err) {
+
+        }
+      });
+    }
+
   })
+  function getVal() {
+    const val = document.querySelector('input').value;
+    console.log(val);
+  }
 </script>
 
 </html>

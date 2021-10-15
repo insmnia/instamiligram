@@ -142,4 +142,5 @@ class SearchUser(View):
     def post(self, request, *args, **kwargs):
         name = request.POST.get('name')
         users = User.objects.filter(username__contains=name).all()
-        return JsonResponse({'users': users})
+        data = [user.username for user in users]
+        return JsonResponse({'users': data})
