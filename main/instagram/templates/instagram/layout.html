@@ -134,12 +134,19 @@
         success: (json) => {
           search = document.querySelector('#drp')
           $(search).empty();
+          // TODO разобраться с поиском
           json['users'].forEach(element => {
-            console.log(element)
+            arr = ['<li role="presentation"><a role="menuitem" tabindex="-1" href="{% url ',
+              "'instagram:home' username=",
+              element,
+              ' %}">',
+              element,
+              '</a></li>'
+            ]
+            console.log(arr.join(""))
             search.insertAdjacentHTML(
               'beforeend',
-              '<li role="presentation"><a role="menuitem" tabindex="-1" href="{% url "instagram:home" %}">' + element + '</a></li>',
-
+              arr.join("")
             );
           });
         },
