@@ -14,7 +14,7 @@ class Profile(models.Model):
     following_count = models.IntegerField(default=0)
     following = models.ManyToManyField(
         User, blank=True, related_name='user_following', symmetrical=False)
-    saved_posts = models.ForeignKey(Post, on_delete=models.CASCADE, blank=True, null=True)
+    saved_posts = models.ForeignKey(Post, on_delete=models.CASCADE, blank=True, null=True,related_name='profiles')
 
     def __str__(self):
         return f"{self.user.username} Profile {self.followers.count()} {self.following.count()}"

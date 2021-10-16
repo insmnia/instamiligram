@@ -130,18 +130,41 @@ class LikeView(LoginRequiredMixin, View):
 class GlobalPostView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         posts = Post.objects.all().order_by('-date_posted')
-        paginator = Paginator(posts, 1)
-        page_number = request.GET.get('page')
-        page_obj = paginator.get_page(page_number)
         return render(
             request,
             "instagram/home.html",
             context={
                 'posts': posts,
-                'page_obj': page_obj
             }
         )
 
+class SavePost(LoginRequiredMixin,View):
+    def post(self,request,*args,**kwargs):
+        id = int(request.POST.get('postid'))
+        post = get_object_or_404(Post,id=id)
+        if post.profiles.filter(id=request.user.id).exists():
+            post.profiles.remove(request.user.profile)
+            saved=False
+        else:
+            post.profiles.add(request.user.profile)
+            saved=True
+        post.save()
+        return JsonResponse({'saved':saved})
+
+class SavedPostsView(LoginRequiredMixin,View):
+    def get(self,request,*args,**kwargs):
+        p = Post.objects.all()
+        posts = []
+        for post in p:
+            if post.profiles.filter(user=request.user).exists():
+                posts.append(post)
+        return render(
+            request,
+            "instagram/home.html",
+            context={
+                "posts":posts
+            }
+        )
 
 class SearchUser(View):
     def post(self, request, *args, **kwargs):

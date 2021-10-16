@@ -89,36 +89,35 @@
     </nav>
   </header>
   <main role="main" class="container">
-    <div class="row">
-      <div class="col-md-8">
-        {% if messages %}
-        {% for message in messages %}
-        <div class="alert alert-{{message.tags}}">
-          {{message}}
-        </div>
-        {% endfor %}
-        {% endif %}
-        {% block content %}{% endblock %}
+    <div class="col-md-8">
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-{{message.tags}}">
+        {{message}}
       </div>
-      {% if user.is_authenticated %}
-
-      <div class="col-md-4">
-        <div class="content-section">
-          <img src="{{ request.user.profile.image.url }}" alt="..."
-            style="width: 36px;height: 36px;overflow: hidden;border-radius: 50%;margin-right: 5px;">
-          <b style="font-size:medium;">{{request.user.username}}</b>
-          <p class='text-muted'>
-          <ul class="list-group">
-            <li class="list-group-item list-group-item-light"><a href="{% url 'user:settings' %}"
-                style="text-decoration: none;color:black">Change profile</a></li>
-            <li class="list-group-item list-group-item-light"><a href="{% url 'instagram:explore' %}"
-                style="text-decoration: none;color:black">Explore</a></li>
-          </ul>
-          </p>
-        </div>
-      </div>
+      {% endfor %}
       {% endif %}
+      {% block content %}{% endblock %}
     </div>
+    {% if user.is_authenticated %}
+    <div class="col-md-4">
+      <div class="content-section">
+        <img src="{{ request.user.profile.image.url }}" alt="..."
+          style="width: 36px;height: 36px;overflow: hidden;border-radius: 50%;margin-right: 5px;">
+        <b style="font-size:medium;">{{request.user.username}}</b>
+        <p class='text-muted'>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-light"><a href="{% url 'user:settings' %}"
+              style="text-decoration: none;color:black">Change profile</a></li>
+          <li class="list-group-item list-group-item-light"><a href="{% url 'instagram:explore' %}"
+              style="text-decoration: none;color:black">Explore</a></li>
+          <li class="list-group-item list-group-item-light"><a href="{% url 'instagram:post-saved' %}"
+              style="text-decoration: none;color:black">Saved Posts</a></li>
+        </ul>
+        </p>
+      </div>
+    </div>
+    {% endif %}
   </main>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -145,6 +144,18 @@
     }
     return cookieValue;
   }
+  //
+  // 
+  function redirect(id) {
+    loc = window.location.href.split('/');
+    tloc = '';
+    for (let i = 0; i < 3; i++) {
+      const element = loc[i];
+      tloc += loc[i] + '/';
+    }
+    window.location.replace(tloc + 'profile/' + id.innerHTML);
+  }
+  // ajax
   $(document).on('keyup', '#isearch', (e) => {
     if ($("#isearch").val() != '') {
       $.ajax({
@@ -159,11 +170,11 @@
           search = document.querySelector('#drp')
           $(search).empty();
           // TODO разобраться с поиском
+          id = 0
           json['users'].forEach(element => {
-            arr = ['<li role="presentation"><a role="menuitem" tabindex="-1" href="{% url ',
-              "'instagram:home' username=",
+            arr = ['<li role="presentation"><a role="menuitem" class="btn" onclick="redirect(this)" tabindex="-1" id="',
               element,
-              ' %}">',
+              '">',
               element,
               '</a></li>'
             ]
@@ -171,6 +182,7 @@
               'beforeend',
               arr.join("")
             );
+            id += 1
           });
         },
         error: function (xhr, errmsg, err) {

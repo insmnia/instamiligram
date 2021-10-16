@@ -16,4 +16,4 @@ def get_post_comments(post, *args, **kwargs):
 
 @register.simple_tag
 def have_saved(post,user,*args,**kwargs):
-    return user.profile.saved_posts.filter(id=post.id).exists()
+    return post.profiles.filter(id=user.id).exists()

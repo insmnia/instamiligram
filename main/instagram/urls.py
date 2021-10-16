@@ -3,6 +3,8 @@ from .views import (
     PostCreateView,
     HomeView,
     PostDetailView,
+    SavePost,
+    SavedPostsView,
     UserPostListView,
     PostUpdateView,
     PostDeleteView,
@@ -23,6 +25,7 @@ urlpatterns = [
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name="post-delete"),
     path("like/", LikeView.as_view(), name="like"),
     path('explore', GlobalPostView.as_view(), name="explore"),
-    path('search', SearchUser.as_view(), name='search')
-
+    path('search', SearchUser.as_view(), name='search'),
+    path('save',SavePost.as_view(),name="save"),
+    path('post/saved',SavedPostsView.as_view(),name="post-saved")
 ]
