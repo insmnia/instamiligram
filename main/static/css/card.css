@@ -272,3 +272,10 @@ p {
 .img-sm+.img-push {
     margin-left: 40px
 }
+
+.btn:active, button:focus {
+    outline: none;
+  }
+.btn::-moz-focus-inner {
+    border: 0;
+  }
