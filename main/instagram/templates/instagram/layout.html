@@ -36,27 +36,31 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            {% if user.is_authenticated %}
             <li class="nav-item">
-              <form class="d-flex" style="margin-top:10px">
+              <div class="dropdown">
+                <img src="{{ request.user.profile.image.url }}" alt="..."
+                  style="width: 36px;height: 36px;border-radius: 50%;margin-right: 5px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="nav-item nav-link" href="{% url 'instagram:post-create' %}">New Post</a></li>
+                  <li><a class="nav-item nav-link" href="{% url 'user:settings' %}">Settings</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="nav-item nav-link" href="{% url 'logout' %}">Sign Out</a></li>
+                </ul>
+              </div>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+              <form class="d-flex" style="margin-top:2px">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="isearch"
                   style="position: relative;" data-toggle="dropdown">
                 <div class="dropdown">
                   <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" id="drp">
                   </ul>
                 </div>
-                <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
               </form>
             </li>
             {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-item nav-link" href="{% url 'instagram:post-create' %}">New Post</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-item nav-link" href="{% url 'user:profile' username=request.user.username %}">Profile</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-item nav-link" href="{% url 'logout' %}">Sign Out</a>
-            </li>
             {% else %}
             <li class="nav-item">
               <a class="nav-item nav-link" href="{% url 'user:register' %}">Sign Up</a>
@@ -107,8 +111,6 @@
         <b style="font-size:medium;">{{request.user.username}}</b>
         <p class='text-muted'>
         <ul class="list-group">
-          <li class="list-group-item list-group-item-light"><a href="{% url 'user:settings' %}"
-              style="text-decoration: none;color:black">Change profile</a></li>
           <li class="list-group-item list-group-item-light"><a href="{% url 'instagram:explore' %}"
               style="text-decoration: none;color:black">Explore</a></li>
           <li class="list-group-item list-group-item-light"><a href="{% url 'instagram:post-saved' %}"

@@ -69,7 +69,7 @@ class PostDetailView(View):
             request,
             "instagram/post_detail.html",
             context={
-                'post': post,
+                'object': post,
                 'form': CommentForm(),
                 'comments': comments,
             }

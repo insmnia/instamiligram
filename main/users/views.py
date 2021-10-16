@@ -47,7 +47,7 @@ class UserSettingsView(LoginRequiredMixin, View):
             u_form.save()
             p_form.save()
             messages.success(request, message="Updated!")
-            return redirect("user:profile")
+            return redirect("user:settings")
         return self.get(request)
 
 
