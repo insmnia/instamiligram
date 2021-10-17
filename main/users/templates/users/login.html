@@ -1,21 +1,153 @@
-{% extends "instagram/layout.html" %}
-{% load crispy_forms_tags %}
-{% block content %}
-<div class="content-section">
-    <form action="" method="POST">
-        {%csrf_token%}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4">
-                Sign in
-            </legend>
-            {{ form|crispy }}
-        </fieldset>
-        <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Sign In</button>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <title>Instagram</title>
+</head>
+
+<style>
+    .login {
+        min-height: 50vh;
+    }
+
+    .bg-image {
+        background-image: url('https://source.unsplash.com/WEQbe2jBg40/600x1200');
+        background-size: cover;
+        background-position: center;
+    }
+
+    .login-heading {
+        font-weight: 300;
+    }
+
+    .btn-login {
+        font-size: 0.9rem;
+        letter-spacing: 0.05rem;
+        padding: 0.75rem 1rem;
+    }
+</style>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'instagram:home' %}">Instagram</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <img src="{{ request.user.profile.image.url }}" alt="..."
+                                style="width: 36px;height: 36px;border-radius: 50%;margin-right: 5px;" type="button"
+                                id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="nav-item nav-link" href="{% url 'instagram:post-create' %}">New Post</a>
+                                </li>
+                                <li><a class="nav-item nav-link" href="{% url 'user:settings' %}">Settings</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="nav-item nav-link" href="{% url 'logout' %}">Sign Out</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <form class="d-flex" style="margin-top:2px">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                                id="isearch" style="position: relative;" data-toggle="dropdown">
+                            <div class="dropdown">
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" id="drp">
+                                </ul>
+                            </div>
+                        </form>
+                    </li>
+                    {% if user.is_authenticated %}
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-item nav-link" href="{% url 'user:register' %}">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-item nav-link" href="{% url 'user:login' %}">Sign In</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
-    </form>
-    <div class="border-top pt-3">
-        <!-- <small class="text-muted">Don't Have an Account? <a class="ml-2" href="{% url 'user:register' %}">Sign up</a></small> -->
+    </nav>
+</header>
+<main role="main" class="container">
+    <div class="row">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}}">
+            {{message}}
+        </div>
+        {% endfor %}
+        {% endif %}
+        <div class="container-fluid ps-md-0">
+            <div class="row g-0">
+                <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+                <div class="col-md-8 col-lg-6">
+                    <div class="login d-flex align-items-center py-5">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-9 col-lg-8 mx-auto">
+                                    <h3 class="login-heading mb-4">Welcome Back!</h3>
+                                    <!-- Sign In Form -->
+                                    <form action="" method="POST">
+                                        {%csrf_token%}
+                                        <div class="form-floating mb-3">
+                                            <small class="text-muted">Username</small>
+                                            {{form.username}}
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <small class="text-muted">Password</small>
+                                            {{form.password}}
+                                        </div>
+
+                                        <div class="d-grid">
+                                            <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2"
+                                                type="submit" style="height: 35px;">Sign
+                                                In</button>
+                                            <div class="text-center">
+                                                <a class="small" href="#">Haven't got an account yet?</a>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-{% endblock content %}
+</main>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script> -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

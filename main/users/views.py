@@ -1,16 +1,39 @@
-from django.http.response import JsonResponse
+from django.contrib.auth import authenticate, login
+from django.http.response import JsonResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import (
     CreateUserForm,
     UpdateProfileForm,
-    UpdateUserForm
+    UpdateUserForm,
+    LoginForm
 )
 from django.views.generic import View
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 app_name = "user"
 
+class LoginView(View):
+    def get(self,request,*args,**kwargs):
+        form = LoginForm()
+        return render(
+            request,
+            "users/login.html",
+            {'form':form}
+        )
+    def post(self,request,*args,**kwargs):
+        form = LoginForm(request.POST or None)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(
+                username=username,
+                password=password
+            )
+            if user:
+                login(request,user)
+                return HttpResponseRedirect('/')
+        return self.get(request)
 
 class CreateUserView(View):
 
@@ -24,7 +47,7 @@ class CreateUserView(View):
         if form.is_valid():
             form.save()
             messages.success(request, message="Successfully created")
-            return redirect('login')
+            return redirect('user:login')
         messages.error(request, message="Check you info")
         return self.get(request=request)
 

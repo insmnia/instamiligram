@@ -1,15 +1,78 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.core.exceptions import ValidationError
 from .models import Profile
 
 
 class CreateUserForm(UserCreationForm):
+    username = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'Username',
+        'id': 'floatingInput',
+    }), max_length=20, required=True)
+    email = forms.EmailField(widget=forms.EmailInput(attrs={
+        'type': 'email',
+        'class': 'form-control',
+        'placeholder': 'example@example.com'
+    }), required=True)
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={
+        'class': 'form-control',
+        'type': 'password',
+        'placeholder': 'Password'
+    }), required=True)
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={
+        'class': 'form-control',
+        'type': 'password',
+        'placeholder': 'Password'
+    }), required=True)
+
+    def clean(self):
+        username = self.cleaned_data['username']
+
+        if User.objects.filter(username=username).exists():
+            raise forms.ValidationError(
+                f'User with username "{username}" already exists')
+        return self.cleaned_data
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError(
+                f'User with email {email} already exists.'
+            )
+        return email
+    
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
 
-    email = forms.EmailField()
+
+class LoginForm(forms.ModelForm):
+    username = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'Username',
+    }), required=True)
+    password = forms.CharField(widget=forms.PasswordInput(attrs={
+        'class': 'form-control',
+        'type': 'password',
+    }), required=True)
+
+    class Meta:
+        model = User
+        fields = ['username', 'password']
+
+    def clean(self):
+        username = self.cleaned_data['username']
+        password = self.cleaned_data['password']
+        if not User.objects.filter(username=username).exists():
+            raise forms.ValidationError(
+                f'User with username "{username}" not found in the system.')
+        user = User.objects.filter(username=username).first()
+        if user:
+            if not user.check_password(password):
+                raise forms.ValidationError("Wrong password.")
+        return self.cleaned_data
 
 
 class UpdateUserForm(forms.ModelForm):
