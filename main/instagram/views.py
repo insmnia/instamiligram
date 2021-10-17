@@ -5,7 +5,8 @@ from django.views.generic import (
     View, ListView, DetailView, CreateView, UpdateView, DeleteView
 )
 from .forms import CommentForm
-from .models import Post
+from .models import Comment, Post, Like
+from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -114,17 +115,45 @@ class LikeView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         id = int(request.POST.get('postid'))
         post = get_object_or_404(Post, id=id)
-        if post.likes.filter(id=request.user.id).exists():
-            post.likes.remove(request.user)
+        post_object_type = ContentType.objects.get_for_model(post)
+        like_obj = Like.objects.filter(
+            content_type=post_object_type, object_id=post.id, user=request.user
+        )
+        if like_obj.exists():
             liked = False
+            like_obj.delete()
         else:
-            post.likes.add(request.user)
             liked = True
+            like = Like.objects.create(
+                content_type=post_object_type, object_id=post.id, user=request.user)
+            like.save()
 
-        result = len(post.likes.all())
+        result = post.total_likes
         post.save()
 
         return JsonResponse({'result': result, "liked": liked})
+
+
+class LikeComment(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        id = int(request.POST.get('commentid'))
+        comment = get_object_or_404(Comment, id=id)
+        comment_object_type = ContentType.objects.get_for_model(comment)
+        like_obj = Like.objects.filter(
+            content_type=comment_object_type, object_id=comment.id, user=request.user
+        )
+        if like_obj.exists():
+            liked = False
+            like_obj.delete()
+        else:
+            liked = True
+            like = Like.objects.create(
+                content_type=comment_object_type, object_id=comment.id, user=request.user
+            )
+            like.save()
+        result = comment.total_likes
+        comment.save()
+        return JsonResponse({'result':result,'liked':liked})
 
 
 class GlobalPostView(LoginRequiredMixin, View):
@@ -138,21 +167,23 @@ class GlobalPostView(LoginRequiredMixin, View):
             }
         )
 
-class SavePost(LoginRequiredMixin,View):
-    def post(self,request,*args,**kwargs):
+
+class SavePost(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
         id = int(request.POST.get('postid'))
-        post = get_object_or_404(Post,id=id)
+        post = get_object_or_404(Post, id=id)
         if post.profiles.filter(id=request.user.id).exists():
             post.profiles.remove(request.user.profile)
-            saved=False
+            saved = False
         else:
             post.profiles.add(request.user.profile)
-            saved=True
+            saved = True
         post.save()
-        return JsonResponse({'saved':saved})
+        return JsonResponse({'saved': saved})
 
-class SavedPostsView(LoginRequiredMixin,View):
-    def get(self,request,*args,**kwargs):
+
+class SavedPostsView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
         p = Post.objects.all()
         posts = []
         for post in p:
@@ -162,9 +193,10 @@ class SavedPostsView(LoginRequiredMixin,View):
             request,
             "instagram/home.html",
             context={
-                "posts":posts
+                "posts": posts
             }
         )
+
 
 class SearchUser(View):
     def post(self, request, *args, **kwargs):

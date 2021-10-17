@@ -42,6 +42,7 @@
                 <img src="{{ request.user.profile.image.url }}" alt="..."
                   style="width: 36px;height: 36px;border-radius: 50%;margin-right: 5px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="nav-item nav-link" href="{% url 'user:profile' request.user.username %}">Profile</a></li>
                   <li><a class="nav-item nav-link" href="{% url 'instagram:post-create' %}">New Post</a></li>
                   <li><a class="nav-item nav-link" href="{% url 'user:settings' %}">Settings</a></li>
                   <li><hr class="dropdown-divider"></li>
@@ -95,6 +96,8 @@
         <ul class="list-group">
           <li class="list-group-item list-group-item-light"><a href="{% url 'instagram:explore' %}"
               style="text-decoration: none;color:black">Explore</a></li>
+          <li class="list-group-item list-group-item-light"><a href="{% url 'user:followers' %}"
+              style="text-decoration: none;color:black">Followers</a></li>
           <li class="list-group-item list-group-item-light"><a href="{% url 'instagram:post-saved' %}"
               style="text-decoration: none;color:black">Saved Posts</a></li>
         </ul>

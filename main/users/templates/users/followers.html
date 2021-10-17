@@ -1,0 +1,24 @@
+{% extends 'instagram/layout.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/table.css' %}">
+{% block content %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Followers</th>
+            <th>Following</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for follower in followers %}
+        <tr>
+            <td><a href="{% url 'user:profile' follower.username %}"></a>{{follower.username}}</td>
+            <td>{{ follower.profile.followers_count }}</td>
+            <td>{{ follower.profile.following_count }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}

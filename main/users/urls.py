@@ -3,7 +3,8 @@ from .views import (
     LoginView,
     UserSettingsView,
     FollowUserView,
-    UserProfileView
+    UserProfileView,
+    UserFollowerView
 )
 from django.urls import path
 
@@ -15,4 +16,5 @@ urlpatterns = [
     path("follow/", FollowUserView.as_view(), name='follow'),
     path('settings/', UserSettingsView.as_view(), name="settings"),
     path('login/',LoginView.as_view(),name="login"),
+    path('followers',UserFollowerView.as_view(),name="followers")
 ]

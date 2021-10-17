@@ -88,8 +88,6 @@ class FollowUserView(LoginRequiredMixin, View):
         # пользователь уже подписан -> отписка
         flw = False
         if target_user.profile.followers.filter(id=initiator_user.id).exists():
-            initiator_user.profile.following_count -= 1
-            target_user.profile.followers_count -= 1
             target_user.profile.followers.remove(initiator_user)
             initiator_user.profile.following.remove(target_user)
             flw = False
@@ -97,11 +95,20 @@ class FollowUserView(LoginRequiredMixin, View):
         else:
             initiator_user.profile.following.add(target_user)
             target_user.profile.followers.add(initiator_user)
-            initiator_user.profile.following_count += 1
-            target_user.profile.followers_count += 1
             flw = True
 
         result = target_user.profile.followers_count
         initiator_user.profile.save()
         target_user.profile.save()
         return JsonResponse({"result": result, 'flw': flw})
+
+class UserFollowerView(LoginRequiredMixin, View):
+    def get(self,request,*args,**kwargs):
+        users = request.user.profile.followers.all()
+        return render(
+            request,
+            'users/followers.html',
+            {
+                'followers':users
+            }
+        )

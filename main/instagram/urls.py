@@ -1,5 +1,6 @@
 from .views import (
     AboutView,
+    LikeComment,
     PostCreateView,
     HomeView,
     PostDetailView,
@@ -27,5 +28,6 @@ urlpatterns = [
     path('explore', GlobalPostView.as_view(), name="explore"),
     path('search', SearchUser.as_view(), name='search'),
     path('save',SavePost.as_view(),name="save"),
-    path('post/saved',SavedPostsView.as_view(),name="post-saved")
+    path('post/saved',SavedPostsView.as_view(),name="post-saved"),
+    path('likecom/',LikeComment.as_view(),name='like-com')
 ]
