@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login
+from django.contrib.contenttypes.models import ContentType
 from django.http.response import JsonResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -103,12 +104,27 @@ class FollowUserView(LoginRequiredMixin, View):
         return JsonResponse({"result": result, 'flw': flw})
 
 class UserFollowerView(LoginRequiredMixin, View):
-    def get(self,request,*args,**kwargs):
-        users = request.user.profile.followers.all()
+    def get(self,request,username,*args,**kwargs):
+        user = User.objects.filter(username=username).first()
+        users = user.profile.followers.all()
         return render(
             request,
             'users/followers.html',
             {
-                'followers':users
+                'users':users,
+                'target':'Followers'
+            }
+        )
+
+class UserFollowingView(LoginRequiredMixin, View):
+    def get(self,request,username,*args,**kwargs):
+        user = User.objects.filter(username=username).first()
+        users = user.profile.following.all()
+        return render(
+            request,
+            'users/followers.html',
+            {
+                'users':users,
+                'target':'Following'
             }
         )

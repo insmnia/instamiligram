@@ -16,13 +16,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
   {% load static %}
   <script src="{% static 'js/jquery-3.6.0.min.js' %}" text="text/javascript"></script>
-  <title>Instagram</title>
+  <title>Bloguru</title>
 </head>
 
 <body>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family:Georgia, 'Times New Roman', Times, serif
     }
   </style>
   <!-- Навигация -->
@@ -96,8 +96,12 @@
         <ul class="list-group">
           <li class="list-group-item list-group-item-light"><a href="{% url 'instagram:explore' %}"
               style="text-decoration: none;color:black">Explore</a></li>
-          <li class="list-group-item list-group-item-light"><a href="{% url 'user:followers' %}"
+          <li class="list-group-item list-group-item-light"><a href="{% url 'user:followers' request.user.username %}"
               style="text-decoration: none;color:black">Followers</a></li>
+          <li class="list-group-item list-group-item-light"><a href="{% url 'user:following' request.user.username %}"
+              style="text-decoration: none;color:black">Following</a></li>
+          <li class="list-group-item list-group-item-light"><a href="{% url 'instagram:post-liked' %}"
+              style="text-decoration: none;color:black">Liked Posts</a></li>
           <li class="list-group-item list-group-item-light"><a href="{% url 'instagram:post-saved' %}"
               style="text-decoration: none;color:black">Saved Posts</a></li>
         </ul>

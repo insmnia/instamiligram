@@ -1,6 +1,7 @@
 from .views import (
     CreateUserView,
     LoginView,
+    UserFollowingView,
     UserSettingsView,
     FollowUserView,
     UserProfileView,
@@ -16,5 +17,6 @@ urlpatterns = [
     path("follow/", FollowUserView.as_view(), name='follow'),
     path('settings/', UserSettingsView.as_view(), name="settings"),
     path('login/',LoginView.as_view(),name="login"),
-    path('followers',UserFollowerView.as_view(),name="followers")
+    path('followers/<str:username>',UserFollowerView.as_view(),name="followers"),
+    path('following/<str:username>',UserFollowingView.as_view(),name="following"),
 ]

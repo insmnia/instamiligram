@@ -204,3 +204,16 @@ class SearchUser(View):
         users = User.objects.filter(username__contains=name).all()
         data = [user.username for user in users]
         return JsonResponse({'users': data})
+
+class UserLikedPostsView(LoginRequiredMixin,View):
+    def get(self,request,*args,**kwargs):
+        post_object_type = ContentType.objects.get_for_model(Post)
+        posts = []
+        for post in Post.objects.all():
+            if Like.objects.filter(content_type=post_object_type,object_id=post.id,user=request.user).exists():
+                posts.append(post)
+        return render(
+            request,
+            "instagram/home.html",
+            {'posts':posts}
+        )

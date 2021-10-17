@@ -7,7 +7,10 @@ register = template.Library()
 
 @register.simple_tag
 def have_liked(post, user, *args, **kwargs):
-    return post.likes.filter(id=user.id).exists()
+    like_obj = Like.objects.filter(
+            content_type=ContentType.objects.get_for_model(post), object_id=post.id, user=user
+        )
+    return like_obj.exists()
 
 @register.simple_tag
 def have_liked_comment(comment, user, *args, **kwargs):
