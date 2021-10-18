@@ -1,7 +1,7 @@
 from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth.models import User
-from django.contrib.contenttypes.fields import GenericForeignKey,GenericRelation
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
@@ -14,7 +14,8 @@ class Like(models.Model):
     content_type = models.ForeignKey(ContentType,
                                      on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
-    content_object = GenericForeignKey('content_type','object_id')
+    content_object = GenericForeignKey('content_type', 'object_id')
+
 
 class Post(models.Model):
     title = models.CharField(max_length=20)
@@ -24,11 +25,11 @@ class Post(models.Model):
         User, on_delete=models.CASCADE, related_name="author")
     likes = GenericRelation(Like)
     date_posted = models.DateTimeField(default=timezone.now)
-    tags = ArrayField(models.CharField(max_length=40),default=list)
+    tags = ArrayField(models.CharField(max_length=40), default=list)
 
     def __str__(self):
         return f"Post by {self.author}"
-    
+
     @property
     def total_likes(self):
         return self.likes.count()
@@ -53,3 +54,10 @@ class Comment(models.Model):
     @property
     def total_likes(self):
         return self.likes.count()
+
+
+class Tag(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name

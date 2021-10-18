@@ -5,7 +5,7 @@ from django.views.generic import (
     View, ListView, DetailView, CreateView, UpdateView, DeleteView
 )
 from .forms import CommentForm, CreatePostForm
-from .models import Comment, Post, Like
+from .models import Comment, Post, Like, Tag
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
@@ -53,6 +53,10 @@ class PostCreateView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         form = CreatePostForm(request.POST, request.FILES)
         if form.is_valid():
+            tags = request.POST.get('tags')
+            for tag_name in tags.split():
+                if not Tag.objects.filter(name=tag_name).exists():
+                    Tag.objects.create(name=tag_name)
             post = form.save(commit=False)
             post.author = request.user
             post.save()
@@ -60,7 +64,6 @@ class PostCreateView(LoginRequiredMixin, View):
             return HttpResponseRedirect(
                 reverse('instagram:post-detail', kwargs={"pk": post.pk})
             )
-        print("Error")
         return self.get(request)
 
 
@@ -220,6 +223,13 @@ class SearchUser(View):
         users = User.objects.filter(username__contains=name).all()
         data = [user.username for user in users]
         return JsonResponse({'users': data})
+
+
+class SearchTag(View):
+    def post(self, request, *args, **kwargs):
+        tag_name = request.POST.get('tag_name').replace('#', '')
+        tags = Tag.objects.filter(name__startswith=tag_name).all()
+        return JsonResponse({'tags': [tag.name for tag in tags]})
 
 
 class UserLikedPostsView(LoginRequiredMixin, View):

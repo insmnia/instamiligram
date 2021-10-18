@@ -34,14 +34,14 @@ class CreatePostForm(forms.ModelForm):
         attrs={
             'class': 'form-control',
             'id': 'tags',
-            'placeholder': '#yourtaghere'
+            'placeholder': '#yourtaghere #anothertaghere'
         }
     ), required=False)
 
     def clean_tags(self):
         if self.cleaned_data['tags']:
             tags = self.cleaned_data['tags']
-            return tags[0].split()
+            return tags.split()
         return []
 
 
