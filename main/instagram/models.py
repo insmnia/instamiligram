@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.contenttypes.fields import GenericForeignKey,GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 
 
 class Like(models.Model):
@@ -23,6 +24,7 @@ class Post(models.Model):
         User, on_delete=models.CASCADE, related_name="author")
     likes = GenericRelation(Like)
     date_posted = models.DateTimeField(default=timezone.now)
+    tags = ArrayField(models.CharField(max_length=40),default=list)
 
     def __str__(self):
         return f"Post by {self.author}"
