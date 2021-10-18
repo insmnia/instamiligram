@@ -66,10 +66,10 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-        'libraries':{
-            'instagram_tags':'instagram.templatetags.tags',
-            'user_tags':'users.templatetags.tags'
-        }
+            'libraries':{
+                'instagram_tags': 'instagram.templatetags.tags',
+                'user_tags': 'users.templatetags.tags'
+            }
         },
     },
 ]
@@ -85,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'bloguru',
         'USER': 'postgres',
-        'PASSWORD': '8645',
+        'PASSWORD': '2787831ra',
         'HOST': 'localhost',
         'PORT': '5432',
 
@@ -137,7 +137,7 @@ STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn")
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
-CRISPY_TEMPLATE_PACK="bootstrap4"
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 LOGIN_REDIRECT_URL = 'instagram:home'
 LOGIN_URL = "user:login"
 # Default primary key field type

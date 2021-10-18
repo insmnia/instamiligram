@@ -116,7 +116,6 @@
                                     <!-- Sign In Form -->
                                     <form action="" method="POST">
                                         {%csrf_token%}
-                                        {{ form.errors.items }}
                                         <div class="form-floating mb-3">
                                             <small class="text-muted">Username</small>
                                             {{form.username}}
@@ -153,6 +152,7 @@
         </div>
     </div>
 </main>
+<!-- TODO ошибки формы -->
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"

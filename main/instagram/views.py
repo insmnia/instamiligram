@@ -40,26 +40,27 @@ class HomeView(LoginRequiredMixin, ListView):
 
 
 class PostCreateView(LoginRequiredMixin, View):
-    def get(self,request,*args,**kwargs):
+    def get(self, request, *args, **kwargs):
         form = CreatePostForm()
         return render(
             request,
             'instagram/post_form.html',
             {
-                'form':form
+                'form': form
             }
         )
-    
-    def post(self,request,*args,**kwargs):
-        form = CreatePostForm(request.POST)
+
+    def post(self, request, *args, **kwargs):
+        form = CreatePostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
             post.save()
-            messages.success(request,'New Post!')
+            messages.success(request, 'New Post!')
             return HttpResponseRedirect(
                 reverse('instagram:post-detail', kwargs={"pk": post.pk})
             )
+        print("Error")
         return self.get(request)
 
 
@@ -79,6 +80,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class PostDetailView(View):
     def get(self, request, pk, *args, **kwargs):
         post = Post.objects.filter(id=pk).first()
+        print(post)
         comments = post.comments.all()
         return render(
             request,
@@ -167,7 +169,7 @@ class LikeComment(LoginRequiredMixin, View):
             like.save()
         result = comment.total_likes
         comment.save()
-        return JsonResponse({'result':result,'liked':liked})
+        return JsonResponse({'result': result, 'liked': liked})
 
 
 class GlobalPostView(LoginRequiredMixin, View):
@@ -219,21 +221,23 @@ class SearchUser(View):
         data = [user.username for user in users]
         return JsonResponse({'users': data})
 
-class UserLikedPostsView(LoginRequiredMixin,View):
-    def get(self,request,*args,**kwargs):
+
+class UserLikedPostsView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
         post_object_type = ContentType.objects.get_for_model(Post)
         posts = []
         for post in Post.objects.all():
-            if Like.objects.filter(content_type=post_object_type,object_id=post.id,user=request.user).exists():
+            if Like.objects.filter(content_type=post_object_type, object_id=post.id, user=request.user).exists():
                 posts.append(post)
         return render(
             request,
             "instagram/home.html",
-            {'posts':posts}
+            {'posts': posts}
         )
 
-class TagPostsView(LoginRequiredMixin,View):
-    def get(self,request,tag):
+
+class TagPostsView(LoginRequiredMixin, View):
+    def get(self, request, tag):
         posts = Post.objects.filter(tags__contains=[tag])
         return render(
             request,

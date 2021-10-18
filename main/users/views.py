@@ -14,15 +14,17 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 app_name = "user"
 
+
 class LoginView(View):
-    def get(self,request,*args,**kwargs):
+    def get(self, request, *args, **kwargs):
         form = LoginForm()
         return render(
             request,
             "users/login.html",
-            {'form':form}
+            {'form': form}
         )
-    def post(self,request,*args,**kwargs):
+
+    def post(self, request, *args, **kwargs):
         form = LoginForm(request.POST or None)
         if form.is_valid():
             username = form.cleaned_data.get('username')
@@ -32,9 +34,10 @@ class LoginView(View):
                 password=password
             )
             if user:
-                login(request,user)
+                login(request, user)
                 return HttpResponseRedirect('/')
         return self.get(request)
+
 
 class CreateUserView(View):
 
@@ -103,28 +106,30 @@ class FollowUserView(LoginRequiredMixin, View):
         target_user.profile.save()
         return JsonResponse({"result": result, 'flw': flw})
 
+
 class UserFollowerView(LoginRequiredMixin, View):
-    def get(self,request,username,*args,**kwargs):
+    def get(self, request, username, *args, **kwargs):
         user = User.objects.filter(username=username).first()
         users = user.profile.followers.all()
         return render(
             request,
             'users/followers.html',
             {
-                'users':users,
-                'target':'Followers'
+                'users': users,
+                'target': 'Followers'
             }
         )
 
+
 class UserFollowingView(LoginRequiredMixin, View):
-    def get(self,request,username,*args,**kwargs):
+    def get(self, request, username, *args, **kwargs):
         user = User.objects.filter(username=username).first()
         users = user.profile.following.all()
         return render(
             request,
             'users/followers.html',
             {
-                'users':users,
-                'target':'Following'
+                'users': users,
+                'target': 'Following'
             }
         )

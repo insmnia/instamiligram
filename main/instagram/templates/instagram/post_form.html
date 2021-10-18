@@ -1,21 +1,25 @@
 {% extends "instagram/layout.html" %}
-{% load crispy_forms_tags %}
 {% block content %}
 <div class="content-section">
     <form action="" method="POST" enctype="multipart/form-data">
         {%csrf_token%}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4">
-                Make a Post
-            </legend>
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
             {{ form.title }}
-            {{ form.content }}
-            {{ form.image }}
-            {{ form.tags }}
-        </fieldset>
-        <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Post</button>
         </div>
+        <div class="mb-3">
+            <label for="content" class="form-label">Content</label>
+            {{form.content}}
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            {{form.image}}
+        </div>
+        <div class="mb-3">
+            <label for="tags" class="form-label">Tags</label>
+            {{form.tags}}
+        </div>
+        <button type="submit" class="btn btn-primary">Post</button>
     </form>
 </div>
 {% endblock content %}

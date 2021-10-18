@@ -27,22 +27,22 @@ class CreateUserForm(UserCreationForm):
         'placeholder': 'Password'
     }), required=True)
 
-    def clean(self):
+    def clean_username(self):
         username = self.cleaned_data['username']
 
         if User.objects.filter(username=username).exists():
-            raise forms.ValidationError(
+            raise ValidationError(
                 f'User with username "{username}" already exists')
         return self.cleaned_data
 
     def clean_email(self):
         email = self.cleaned_data['email']
         if User.objects.filter(email=email).exists():
-            raise forms.ValidationError(
+            raise ValidationError(
                 f'User with email {email} already exists.'
             )
         return email
-    
+
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
