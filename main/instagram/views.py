@@ -67,17 +67,9 @@ class PostCreateView(LoginRequiredMixin, View):
         return self.get(request)
 
 
-class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    model = Post
-    fields = ["title", 'content', 'image']
-
-    def form_valid(self, form) -> HttpResponse:
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-
-    def test_func(self):
-        post = self.get_object()
-        return self.request.user == post.author
+class PostUpdateView(LoginRequiredMixin, UpdateView):
+    def get(self, request, pk, *args, **kwargs):
+        pass
 
 
 class PostDetailView(View):

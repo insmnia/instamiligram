@@ -12,16 +12,20 @@
             <span class="description">{{object.date_posted}}</span>
         </div>
         <div class="box-tools">
-
+            {% if request.user == object.author %}
+            <button class="btn btn-outline-danger">
+                <a href="{% url 'instagram:post-delete' object.id %}"
+                    style="text-decoration: none;color: black;">Delete</a>
+            </button>
+            {% endif %}
         </div>
     </div>
     <div class="box-body"> <img class="img-responsive pad" src="{{ object.image.url }}" alt="Photo">
         <h4><a href="{% url 'instagram:post-detail' object.id %}">{{object.title}}</a></h4>
-        <p>{{object.content}}</p>
+        <p style="margin-left:0px;margin-bottom: 4px;">{{object.content}}</p>
         <span class="text-muted">
-            <div class="row">
-
-                <div class="col-sm">
+            <div class="row" style="margin-left: auto;">
+                <div class="col-sm" style="padding: 0;">
                     <span class="text-muted" id="like_count">{{ object.likes.count }}</span>
                     {% if user.is_authenticated %}
                     {% have_liked object user as user_has_liked %}
@@ -88,7 +92,11 @@
                     </button>
                     {% endif %}
                 </div>
-
+            </div>
+            <div class="col-sm">
+                {% for tag in object.tags %}
+                <a href="{% url 'instagram:post-tag' tag %}">#{{tag}}</a>
+                {% endfor %}
             </div>
         </span>
     </div>
@@ -115,7 +123,7 @@
                 </span> {{comment.content }}
             </div>
             <div class="row" style="text-align: right;">
-                <span class="text-muted" >
+                <span class="text-muted">
                     <span class="text-muted" id="com-likes-count{{comment.id}}">{{ comment.total_likes }}</span>
                     {% if user.is_authenticated %}
                     {% have_liked_comment comment user as user_has_liked %}
@@ -159,59 +167,8 @@
                 }
                 return cookieValue;
             }
-            // like
-            $(document).on('click', '#like-button', function (e) {
-                e.preventDefault();
-                $.ajax({
-                    type: 'POST',
-                    url: '{% url "instagram:like" %}',
-                    data: {
-                        postid: $('#like-button').val(),
-                        csrfmiddlewaretoken: getCookie('csrftoken'),
-                        action: 'post'
-                    },
-                    success: function (json) {
-                        document.getElementById("like_count").innerHTML = json['result'];
-                        attr = ''
-                        if (json['liked']) {
-                            attr = "M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                        }
-                        else {
-                            attr = 'm8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z'
-                        }
-                        document.getElementById("like-icon").setAttribute("d", attr);
-                    },
-                    error: function (xhr, errmsg, err) {
-
-                    }
-                });
-            })
-            // ajax save
-            $(document).on('click', '#save-button', function (e) {
-                e.preventDefault();
-                $.ajax({
-                    type: 'POST',
-                    url: '{% url "instagram:save" %}',
-                    data: {
-                        postid: $('#save-button').val(),
-                        csrfmiddlewaretoken: getCookie('csrftoken'),
-                        action: 'post'
-                    },
-                    success: function (json) {
-                        attr = ''
-                        if (json['saved']) {
-                            attr = 'M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15h9.286zM5.5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zM.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8H.8z'
-                        }
-                        else {
-                            attr = "M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"
-                        }
-                        document.getElementById("save-icon").setAttribute("d", attr);
-                    },
-                    error: function (xhr, errmsg, err) {
-
-                    }
-                });
-            })
+        </script>
+        <script>
             // comment like
             $(document).on('click', '#comment-like-button{{ comment.id }}', function (e) {
                 e.preventDefault();
@@ -224,7 +181,7 @@
                         action: 'post'
                     },
                     success: function (json) {
-                        document.getElementById("com-likes-count{{comment.id}}").innerHTML = json['result'];
+                        document.getElementById("com-likes-count{{ comment.id }}").innerHTML = json['result'];
                         attr = ''
                         if (json['liked']) {
                             attr = "M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
@@ -243,5 +200,74 @@
         {% endfor %}
     </div>
 </div>
+<script>
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    // like
+    $(document).on('click', '#like-button', function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '{% url "instagram:like" %}',
+            data: {
+                postid: $('#like-button').val(),
+                csrfmiddlewaretoken: getCookie('csrftoken'),
+                action: 'post'
+            },
+            success: function (json) {
+                document.getElementById("like_count").innerHTML = json['result'];
+                attr = ''
+                if (json['liked']) {
+                    attr = "M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                }
+                else {
+                    attr = 'm8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z'
+                }
+                document.getElementById("like-icon").setAttribute("d", attr);
+            },
+            error: function (xhr, errmsg, err) {
 
+            }
+        });
+    })
+    // ajax save
+    $(document).on('click', '#save-button', function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '{% url "instagram:save" %}',
+            data: {
+                postid: $('#save-button').val(),
+                csrfmiddlewaretoken: getCookie('csrftoken'),
+                action: 'post'
+            },
+            success: function (json) {
+                attr = ''
+                if (json['saved']) {
+                    attr = 'M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15h9.286zM5.5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zM.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8H.8z'
+                }
+                else {
+                    attr = "M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"
+                }
+                document.getElementById("save-icon").setAttribute("d", attr);
+            },
+            error: function (xhr, errmsg, err) {
+
+            }
+        });
+    })
+</script>
 {% endblock content %}
