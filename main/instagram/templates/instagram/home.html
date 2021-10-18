@@ -1,5 +1,8 @@
 {% extends 'instagram/layout.html' %}
 {% block content %}
+{% if not posts %}
+    <h2>You haven't got {{post_type}}. Try to explore them!</h2>
+{% endif %}
 {% for object in posts %}
 {% include 'instagram/_post.html' %}
 {% endfor %}

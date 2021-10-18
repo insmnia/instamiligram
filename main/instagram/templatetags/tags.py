@@ -30,3 +30,7 @@ def get_post_comments(post, *args, **kwargs):
 @register.simple_tag
 def have_saved(post,user,*args,**kwargs):
     return post.profiles.filter(id=user.id).exists()
+
+@register.filter
+def tag_filter(tags):
+    return ' '.join(tags)

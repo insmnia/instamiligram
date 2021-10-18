@@ -1,4 +1,5 @@
 {% extends "instagram/layout.html" %}
+{% load instagram_tags %}
 {% block content %}
 <div class="content-section">
     <form action="" method="POST" enctype="multipart/form-data">
@@ -18,6 +19,7 @@
         <div class="mb-3">
             <label for="tags" class="form-label">Tags <small class="text-muted">(enter without "#" and with spaces for
                     many tags)</small></label>
+            <!-- FIXME tag displaying -->
             {{form.tags}}
         </div>
         <button type="submit" class="btn btn-primary">Post</button>

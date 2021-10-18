@@ -26,17 +26,9 @@ class HomeView(LoginRequiredMixin, ListView):
             "instagram/home.html",
             context={
                 'posts': posts,
+                'post_type': 'following user posts'
             }
         )
-
-    def post(self, request, *args, **kwargs):
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.post = Post.objects.filter(id=id).first()
-            comment.save()
-            messages.success(request, message="Commented!")
-        return self.get(request)
 
 
 class PostCreateView(LoginRequiredMixin, View):
@@ -69,13 +61,40 @@ class PostCreateView(LoginRequiredMixin, View):
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
     def get(self, request, pk, *args, **kwargs):
-        pass
+        post = Post.objects.filter(id=pk).first()
+        if post.author != request.user:
+            return HttpResponseRedirect(reverse('instagram:home'))
+        form = CreatePostForm(instance=post)
+        return render(
+            request,
+            'instagram/post_form.html',
+            {
+                'form': form
+            }
+        )
+
+    def post(self, request, pk, *args, **kwargs):
+        post = Post.objects.filter(id=pk).first()
+        form = CreatePostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            tags = request.POST.get('tags')
+            for tag_name in tags.split():
+                if not Tag.objects.filter(name=tag_name).exists():
+                    Tag.objects.create(name=tag_name)
+            form.save()
+            return HttpResponseRedirect(
+                reverse('instagram:post-detail', kwargs={"pk": post.pk})
+            )
+        return self.get(request, pk)
+
+    def test_func(self, pk):
+        post = Post.objects.filter(id=pk).first()
+        return self.request.user == post.author
 
 
 class PostDetailView(View):
     def get(self, request, pk, *args, **kwargs):
         post = Post.objects.filter(id=pk).first()
-        print(post)
         comments = post.comments.all()
         return render(
             request,
@@ -204,7 +223,8 @@ class SavedPostsView(LoginRequiredMixin, View):
             request,
             "instagram/home.html",
             context={
-                "posts": posts
+                "posts": posts,
+                'post_type': 'saved posts'
             }
         )
 
@@ -234,7 +254,7 @@ class UserLikedPostsView(LoginRequiredMixin, View):
         return render(
             request,
             "instagram/home.html",
-            {'posts': posts}
+            {'posts': posts, 'post_type': 'liked posts'}
         )
 
 

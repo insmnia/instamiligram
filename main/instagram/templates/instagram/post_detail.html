@@ -13,6 +13,10 @@
         </div>
         <div class="box-tools">
             {% if request.user == object.author %}
+            <button class="btn btn-outline-primary">
+                <a href="{% url 'instagram:post-update' object.id %}"
+                    style="text-decoration: none;color: black;">Update</a>
+            </button>
             <button class="btn btn-outline-danger">
                 <a href="{% url 'instagram:post-delete' object.id %}"
                     style="text-decoration: none;color: black;">Delete</a>
