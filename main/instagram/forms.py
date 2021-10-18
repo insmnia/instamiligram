@@ -1,6 +1,15 @@
 from django import forms
-from .models import Comment
+from .models import Comment, Post
 
+
+class CreatePostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['title','content','image','tags']
+    
+    def clean_tags(self):
+        tags = self.cleaned_data['tags']
+        return tags[0].split()
 
 class CommentForm(forms.ModelForm):
     class Meta:

@@ -15,10 +15,11 @@
     </div>
     <div class="box-body"> <img class="img-responsive pad" src="{{ object.image.url }}" alt="Photo">
         <h4><a href="{% url 'instagram:post-detail' object.id %}">{{object.title}}</a></h4>
-        <p>{{object.content}}</p>
+        <p style="margin-left:0px;margin-bottom: 4px;">{{object.content}}</p>
         <span class="text-muted">
-            <div class="row">
-                <div class="col-sm">
+            <!-- FIXME -->
+            <div class="row" style="margin-left: auto;">
+                <div class="col-sm" style="padding: 0;">
                     <span class="text-muted" id="like_count{{ object.id }}">{{ object.likes.count }}</span>
                     {% if user.is_authenticated %}
                     {% have_liked object user as user_has_liked %}
@@ -77,7 +78,11 @@
                     </button>
                     {% endif %}
                 </div>
-
+            </div>
+            <div class="col-sm">
+                {% for tag in object.tags %}
+                    <a href="{% url 'instagram:post-tag' tag %}">#{{tag}}</a>
+                {% endfor %}
             </div>
         </span>
     </div>

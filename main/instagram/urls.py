@@ -12,7 +12,8 @@ from .views import (
     PostDeleteView,
     LikeView,
     GlobalPostView,
-    SearchUser
+    SearchUser,
+    TagPostsView
 )
 from django.urls import path
 app_name = "instagram"
@@ -32,4 +33,5 @@ urlpatterns = [
     path('post/saved',SavedPostsView.as_view(),name="post-saved"),
     path('likecom/',LikeComment.as_view(),name='like-com'),
     path('liked/',UserLikedPostsView.as_view(),name='post-liked'),
+    path('post/tag/<str:tag>',TagPostsView.as_view(),name='post-tag'),
 ]

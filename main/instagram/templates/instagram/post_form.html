@@ -8,7 +8,10 @@
             <legend class="border-bottom mb-4">
                 Make a Post
             </legend>
-            {{ form|crispy }}
+            {{ form.title }}
+            {{ form.content }}
+            {{ form.image }}
+            {{ form.tags }}
         </fieldset>
         <div class="form-group">
             <button class="btn btn-outline-info" type="submit">Post</button>

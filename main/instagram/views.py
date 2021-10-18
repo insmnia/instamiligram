@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404, redirect, render, HttpResponse
 from django.views.generic import (
     View, ListView, DetailView, CreateView, UpdateView, DeleteView
 )
-from .forms import CommentForm
+from .forms import CommentForm, CreatePostForm
 from .models import Comment, Post, Like
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -39,14 +39,28 @@ class HomeView(LoginRequiredMixin, ListView):
         return self.get(request)
 
 
-class PostCreateView(LoginRequiredMixin, CreateView):
-    model = Post
-    fields = ['title', 'content', 'image']
-    template_name = "instagram/post_form.html"
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
+class PostCreateView(LoginRequiredMixin, View):
+    def get(self,request,*args,**kwargs):
+        form = CreatePostForm()
+        return render(
+            request,
+            'instagram/post_form.html',
+            {
+                'form':form
+            }
+        )
+    
+    def post(self,request,*args,**kwargs):
+        form = CreatePostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            messages.success(request,'New Post!')
+            return HttpResponseRedirect(
+                reverse('instagram:post-detail', kwargs={"pk": post.pk})
+            )
+        return self.get(request)
 
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -216,4 +230,15 @@ class UserLikedPostsView(LoginRequiredMixin,View):
             request,
             "instagram/home.html",
             {'posts':posts}
+        )
+
+class TagPostsView(LoginRequiredMixin,View):
+    def get(self,request,tag):
+        posts = Post.objects.filter(tags__contains=[tag])
+        return render(
+            request,
+            "instagram/home.html",
+            context={
+                'posts': posts,
+            }
         )
