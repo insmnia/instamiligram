@@ -180,7 +180,6 @@
           success: (json) => {
             search = document.querySelector('#drp')
             $(search).empty();
-            id = 0
             json['users'].forEach(element => {
               arr = ['<li role="presentation"><a role="menuitem" class="btn" onclick="redirectp(this)" tabindex="-1" id="',
                 element,
@@ -192,7 +191,6 @@
                 'beforeend',
                 arr.join("")
               );
-              id += 1
             });
           },
           error: function (xhr, errmsg, err) {
@@ -224,7 +222,6 @@
                 'beforeend',
                 arr.join("")
               );
-              id += 1
             });
           },
           error: function (xhr, errmsg, err) {
