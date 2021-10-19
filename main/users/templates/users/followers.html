@@ -14,9 +14,11 @@
     <tbody>
         {% for user in users %}
         <tr>
-            <td><a href="{% url 'user:profile' user.username %}">{{user.username}}</a></td>
-            <td>{{ user.profile.followers_count }}</td>
-            <td>{{ user.profile.following_count }}</td>
+            <td><img src="{{ request.user.profile.image.url }}" alt="..."
+                    style="width: 36px;height: 36px;border-radius: 50%;margin-right: 5px;"><a
+                    href="{% url 'user:profile' user.username %}">{{user.username}}</a></td>
+            <td><b style="font-size: 22px;">{{ user.profile.followers_count }}</b></td>
+            <td><b style="font-size: 22px;">{{ user.profile.following_count }}</b></td>
         </tr>
         {% endfor %}
     </tbody>

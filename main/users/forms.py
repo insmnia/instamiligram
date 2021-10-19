@@ -11,6 +11,11 @@ class CreateUserForm(UserCreationForm):
         'placeholder': 'Username',
         'id': 'floatingInput',
     }), max_length=20, required=True)
+    first_name = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'First name',
+        'id': 'floatingInput',
+    }), max_length=20, required=True)
     email = forms.EmailField(widget=forms.EmailInput(attrs={
         'type': 'email',
         'class': 'form-control',
@@ -45,7 +50,7 @@ class CreateUserForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['username', 'email','first_name', 'password1', 'password2']
 
 
 class LoginForm(forms.ModelForm):
@@ -80,7 +85,7 @@ class UpdateUserForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email']
+        fields = ['username','first_name','email']
 
 
 class UpdateProfileForm(forms.ModelForm):
