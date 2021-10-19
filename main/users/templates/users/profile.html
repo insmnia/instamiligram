@@ -6,8 +6,9 @@
 {% get_user_posts user as posts %}
 <div class="card mb-2">
     <div class="row g-0">
-        <div class="col-md-4">
-            <img src="{{user.profile.image.url}}" class="img-fluid rounded-start" alt="..." style=>
+        <div class="col-md-4" style="padding: 10;">
+            <img src="{{user.profile.image.url}}" class="img-fluid" alt="..."
+                style="width: 160px;height:160px;overflow: hidden;border-radius: 50%;margin-left:60px;">
         </div>
         <div class="col-md-8">
             <div class="card-body">
@@ -64,7 +65,8 @@
 <div class="row">
     {% for post in posts %}
     <div class="col-lg-6 mb-1" style="padding:2px;">
-        <a href="{% url 'instagram:post-detail' post.id %}"><img src="{{post.image.url}}" alt="" class="img-fluid rounded shadow-sm"></a>
+        <a href="{% url 'instagram:post-detail' post.id %}"><img src="{{post.image.url}}" alt=""
+                class="img-fluid rounded shadow-sm"></a>
     </div>
     {% endfor %}
 </div>

@@ -16,6 +16,7 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
     {% load static %}
     <script src="{% static 'js/jquery-3.6.0.min.js' %}" text="text/javascript"></script>
+    {% load user_tags %}
     <title>Instagram</title>
 </head>
 
@@ -112,14 +113,16 @@
                             <div class="row">
                                 <div class="col-md-9 col-lg-8 mx-auto">
                                     <h3 class="login-heading mb-4">Sign Up</h3>
-                                    
-                                    {{ form.errors.as_data() }}
                                     <!-- Sign In Form -->
                                     <form action="" method="POST">
                                         {%csrf_token%}
+                                        {{form.errors.email.values}}
                                         <div class="form-floating mb-3">
                                             <small class="text-muted">Username</small>
                                             {{form.username}}
+                                            {% if username_errors %}
+                                            <small class="" style="color: red;">{{ username_errors }}</small>
+                                            {% endif %}
                                         </div>
                                         <div class="form-floating mb-3">
                                             <small class="text-muted">First Name</small>
@@ -128,6 +131,9 @@
                                         <div class="form-floating mb-3">
                                             <small class="text-muted">Email</small>
                                             {{form.email}}
+                                            {% if email_errors %}
+                                            <small class="" style="color: red;">{{ email_errors }}</small>
+                                            {% endif %}
                                         </div>
                                         <div class="form-floating mb-3">
                                             <small class="text-muted">Password</small>
@@ -136,6 +142,9 @@
                                         <div class="form-floating mb-3">
                                             <small class="text-muted">Confirm Password</small>
                                             {{form.password2}}
+                                            {% if password_errors %}
+                                            <small class="" style="color: red;">{{ password_errors }}</small>
+                                            {% endif %}
                                         </div>
 
                                         <div class="d-grid">
@@ -143,7 +152,8 @@
                                                 type="submit" style="height: 35px;">Sign
                                                 Up</button>
                                             <div class="text-center">
-                                                <a class="small" href="{% url 'user:login' %}">Already have an account?</a>
+                                                <a class="small" href="{% url 'user:login' %}">Already have an
+                                                    account?</a>
                                             </div>
                                         </div>
 

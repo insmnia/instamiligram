@@ -52,8 +52,22 @@ class CreateUserView(View):
             form.save()
             messages.success(request, message="Successfully created")
             return redirect('user:login')
+        else:
+            email_errors = [error for error in form.errors['email']]
+            username_errors = [error for error in form.errors['username']]
+            password_errors = [error for error in form.errors['password2']]
+            print(password_errors)
         messages.error(request, message="Check you info")
-        return self.get(request=request)
+        return render(
+            request,
+            'users/register.html',
+            {
+                'form': CreateUserForm(),
+                'email_errors': email_errors,
+                'username_errors': username_errors,
+                'password_errors': password_errors
+            }
+        )
 
 
 class UserSettingsView(LoginRequiredMixin, View):
