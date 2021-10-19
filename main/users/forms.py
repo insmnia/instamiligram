@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from .models import Profile
+from PIL import Image
 
 
 class CreateUserForm(UserCreationForm):
@@ -50,7 +51,7 @@ class CreateUserForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email','first_name', 'password1', 'password2']
+        fields = ['username', 'email', 'first_name', 'password1', 'password2']
 
 
 class LoginForm(forms.ModelForm):
@@ -85,10 +86,19 @@ class UpdateUserForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username','first_name','email']
+        fields = ['username', 'first_name', 'email']
 
 
 class UpdateProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['bio', 'image']
+    # FIXME nice cropping image (see Django-crop-images)
+
+    def save(self):
+        form = super(UpdateProfileForm, self).save()
+        image = Image.open(form.image.path)
+        if image.height > 512 or image.width > 512:
+            out = (512, 512)
+            image.thumbnail(out)
+            image.save(self.image.path)
