@@ -38,7 +38,7 @@ class CreateUserForm(UserCreationForm):
         if User.objects.filter(username=username).exists():
             raise ValidationError(
                 f'User with username "{username}" already exists')
-        return self.cleaned_data
+        return username
 
     def clean_email(self):
         email = self.cleaned_data['email']
