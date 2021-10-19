@@ -36,7 +36,14 @@ class LoginView(View):
             if user:
                 login(request, user)
                 return HttpResponseRedirect('/')
-        return self.get(request)
+        return render(
+            request,
+            'users/login.html',
+            {
+                'form': LoginForm(),
+                'errors':form.non_field_errors()
+            }
+        )
 
 
 class CreateUserView(View):
@@ -57,7 +64,6 @@ class CreateUserView(View):
             username_errors = [error for error in form.errors['username']]
             password_errors = [error for error in form.errors['password2']]
             print(password_errors)
-        messages.error(request, message="Check you info")
         return render(
             request,
             'users/register.html',

@@ -121,7 +121,9 @@
                                             <small class="text-muted">Username</small>
                                             {{form.username}}
                                             {% if username_errors %}
-                                            <small class="" style="color: red;">{{ username_errors }}</small>
+                                            {% for error in username_errors %}
+                                            <small class="" style="color: red;">{{ error }}</small>
+                                            {% endfor %}
                                             {% endif %}
                                         </div>
                                         <div class="form-floating mb-3">
@@ -132,7 +134,9 @@
                                             <small class="text-muted">Email</small>
                                             {{form.email}}
                                             {% if email_errors %}
-                                            <small class="" style="color: red;">{{ email_errors }}</small>
+                                            {% for error in email_errors %}
+                                            <small class="" style="color: red;">{{ error }}</small>
+                                            {% endfor %}
                                             {% endif %}
                                         </div>
                                         <div class="form-floating mb-3">
@@ -143,7 +147,9 @@
                                             <small class="text-muted">Confirm Password</small>
                                             {{form.password2}}
                                             {% if password_errors %}
-                                            <small class="" style="color: red;">{{ password_errors }}</small>
+                                            {% for error in password_errors %}
+                                            <small class="" style="color: red;">{{ error }}</small>
+                                            {% endfor %}
                                             {% endif %}
                                         </div>
 

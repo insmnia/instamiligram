@@ -129,7 +129,13 @@
                                                 <a class="small" href="{% url 'user:register' %}">Haven't got an account yet?</a>
                                             </div>
                                         </div>
-
+                                        <div>
+                                            {% if errors %}
+                                                {% for error in errors %}
+                                                    <small style="color: red;">{{error}}</small>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </div>
                                     </form>
                                 </div>
                             </div>

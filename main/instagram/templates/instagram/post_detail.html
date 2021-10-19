@@ -3,6 +3,16 @@
 {% block content %}
 {% load static %}
 {% load instagram_tags %}
+<style>
+    #commentMsg {
+        width: 100%;
+        resize: vertical;
+        border-radius: 15px;
+        border: 0;
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
+        height: 50px;
+    }
+</style>
 <link rel="stylesheet" href="{% static 'css/card.css' %}">
 <div class="box box-widget">
     <div class="box-header with-border">
@@ -106,17 +116,14 @@
     </div>
     <form action="" method="POST" enctype="">
         {%csrf_token%}
-        <fieldset class="form-group">
+        <fieldset class="form-group" style="margin:10px">
             <legend class="mb-2 mt-2">
                 <small>Leave a Comment</small>
             </legend>
-            {{ form|crispy }}
-        </fieldset>
-        <div class="form-group">
+            {{form.content}}
             <button class="btn btn-outline-info" type="submit">Post</button>
-        </div>
+        </fieldset>
     </form>
-    <hr>
     <div class="box-footer box-comments">
         {% for comment in comments %}
         <div class="box-comment"> <img class="img-circle img-sm" src="{{comment.post.author.profile.image.url}}"
