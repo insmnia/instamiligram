@@ -1,0 +1,82 @@
+.img-circle {
+    position: absolute;
+    max-height: 100px;
+    max-width: 100px;
+    bottom: -1vh;
+    left: 2vh;
+}
+
+.img-circle img {
+    border: 2px solid white;
+    border-radius: 50%;
+    max-height: 100px;
+    max-width: 100px;
+}
+
+.Mybtn {
+    padding: 0;
+    margin: 1vh 0 0 0;
+    display: inline-block;
+    height: 35px;
+    line-height: 35px;
+    text-decoration: none;
+    border-radius: 9999px;
+    border: 1px solid black;
+}
+
+.Mybtn:hover {
+    background-color: #0a0a0a1c;
+}
+
+.Mybtn small {
+    color: black;
+    font-weight: 500;
+    font-size: 15px;
+    padding: 15px;
+}
+
+.btn-f {
+    padding: 0;
+    margin: 1vh 0 0 0;
+    display: inline-block;
+    height: 35px;
+    line-height: 35px;
+    text-decoration: none;
+    border-radius: 9999px;
+    border: 1px solid black;
+    background-color: white;
+}
+
+.btn-uf {
+    padding: 0;
+    margin: 1vh 0 0 0;
+    display: inline-block;
+    height: 35px;
+    line-height: 35px;
+    text-decoration: none;
+    border-radius: 9999px;
+    border: 1px solid black;
+    background-color: black;
+}
+
+.btn-f:hover {
+    background-color: #0a0a0a1c;
+}
+
+.btn-uf:hover {
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+.btn-f small {
+    color: black;
+    font-weight: 500;
+    font-size: 15px;
+    padding: 15px;
+}
+
+.btn-uf small {
+    color: white;
+    font-weight: 500;
+    font-size: 15px;
+    padding: 15px;
+}
