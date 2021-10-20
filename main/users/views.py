@@ -41,7 +41,7 @@ class LoginView(View):
             'users/login.html',
             {
                 'form': LoginForm(),
-                'errors':form.non_field_errors()
+                'errors': form.non_field_errors()
             }
         )
 
@@ -60,10 +60,15 @@ class CreateUserView(View):
             messages.success(request, message="Successfully created")
             return redirect('user:login')
         else:
-            email_errors = [error for error in form.errors['email']]
-            username_errors = [error for error in form.errors['username']]
-            password_errors = [error for error in form.errors['password2']]
-            print(password_errors)
+            email_errors, username_errors, password_errors = ([], [], [])
+            if form.errors.get('email'):
+                email_errors = [error for error in form.errors.get('email')]
+            if form.errors.get('username'):
+                username_errors = [
+                    error for error in form.errors.get('username')]
+            if form.errors.get('password2'):
+                password_errors = [
+                    error for error in form.errors.get('password2')]
         return render(
             request,
             'users/register.html',

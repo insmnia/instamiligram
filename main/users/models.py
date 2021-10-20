@@ -8,6 +8,8 @@ from PIL import Image
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default="default.jpg", upload_to="profile_pics")
+    bg_image = models.ImageField(
+        default="bg_default.jpg", upload_to="bg_images")
     bio = models.TextField(blank=True)
     followers = models.ManyToManyField(
         User, blank=True, related_name='user_followers', symmetrical=False)
@@ -23,15 +25,15 @@ class Profile(models.Model):
         super(Profile, self).save(*args, **kwargs)
 
         img = Image.open(self.image.path)
-        if img.height > 512 or img.width > 512:
+        if img.height > 512 or img.width > 512 or img.width != img.height:
             out = (512, 512)
-            img.thumbnail(out)
-            img.save(self.image.path)
-    
-    @property
+            i = img.resize(out)
+            i.save(self.image.path)
+
+    @ property
     def followers_count(self):
         return self.followers.count()
 
-    @property
+    @ property
     def following_count(self):
         return self.following.count()

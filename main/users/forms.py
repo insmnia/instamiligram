@@ -92,13 +92,5 @@ class UpdateUserForm(forms.ModelForm):
 class UpdateProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['bio', 'image']
+        fields = ['bio', 'image', 'bg_image']
     # FIXME nice cropping image (see Django-crop-images)
-
-    def save(self):
-        form = super(UpdateProfileForm, self).save()
-        image = Image.open(form.image.path)
-        if image.height > 512 or image.width > 512:
-            out = (512, 512)
-            image.thumbnail(out)
-            image.save(self.image.path)

@@ -5,7 +5,9 @@ register = template.Library()
 
 @register.simple_tag
 def is_following(user, target_user, *args, **kwargs):
-    return target_user.profile.followers.filter(id=user.id).exists()
+    if target_user:
+        return target_user.profile.followers.filter(id=user.id).exists()
+    return False
 
 
 @register.simple_tag
