@@ -10,7 +10,6 @@ class Profile(models.Model):
     image = models.ImageField(default="default.jpg", upload_to="profile_pics")
     bg_image = models.ImageField(
         default="bg_default.jpg", upload_to="bg_images")
-    bio = models.TextField(blank=True)
     followers = models.ManyToManyField(
         User, blank=True, related_name='user_followers', symmetrical=False)
     following = models.ManyToManyField(

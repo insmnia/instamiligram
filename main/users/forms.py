@@ -92,5 +92,5 @@ class UpdateUserForm(forms.ModelForm):
 class UpdateProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['bio', 'image', 'bg_image']
+        fields = ['image', 'bg_image']
     # FIXME nice cropping image (see Django-crop-images)
