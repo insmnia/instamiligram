@@ -34,7 +34,7 @@ class CreatePostForm(forms.ModelForm):
         attrs={
             'class': 'form-control',
             'id': 'tags',
-            'placeholder': '#yourtaghere #anothertaghere'
+            'placeholder': 'yourtaghere anothertaghere'
         }
     ), required=False)
 
