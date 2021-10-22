@@ -27,3 +27,4 @@
 2021-10-22 16:23:07,535 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\main\settings.py changed, reloading.
 2021-10-22 16:23:08,073 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2021-10-22 16:23:17,243 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-10-22 16:27:26,765 django.utils.autoreload INFO     Watching for file changes with StatReloader
