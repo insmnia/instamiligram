@@ -5,7 +5,6 @@
 <!-- user vars -->
 {% get_user_posts user as posts %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/profile.css' %}">
 <div class="row">
     <img src="{{user.profile.bg_image.url}}" alt="" style="max-height: 350px;">
 

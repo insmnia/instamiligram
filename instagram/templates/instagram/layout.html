@@ -15,7 +15,11 @@
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
   {% load static %}
-  <script src="{% static 'js/jquery-3.6.0.min.js' %}" text="text/javascript"></script>
+  <!-- <script src="{% static 'js/jquery-3.6.0.min.js' %}" text="text/javascript"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="{% static 'css/card.css' %}">
+  <link rel="stylesheet" href="{% static 'css/table.css' %}">
+  <link rel="stylesheet" href="{% static 'css/profile.css' %}">
   <title>Bloguru</title>
 </head>
 
@@ -99,7 +103,8 @@
               style="width: 36px;height: 36px;overflow: hidden;border-radius: 50%;margin-right: 5px;">
           </div>
           <div class="col-sm" style="max-width:fit-content">
-            <a href="{% url 'user:profile' request.user.username %}" style="text-decoration: none;color: black;"><b style="font-size:medium;">{{request.user.username}}</b></a><br>
+            <a href="{% url 'user:profile' request.user.username %}" style="text-decoration: none;color: black;"><b
+                style="font-size:medium;">{{request.user.username}}</b></a><br>
             <small class="text-muted">{{user.first_name}}</small>
           </div>
         </div>
