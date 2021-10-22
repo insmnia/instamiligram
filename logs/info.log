@@ -1,0 +1,12 @@
+2021-10-22 15:06:30,705 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-10-22 15:06:48,337 django.request WARNING  Not Found: /profile/koji/1
+2021-10-22 15:09:19,012 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\main\settings.py changed, reloading.
+2021-10-22 15:09:32,744 django.request WARNING  Not Found: /explore/1
+2021-10-22 15:11:03,048 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-10-22 15:11:10,928 django.request WARNING  Not Found: /explore/2
+2021-10-22 15:14:10,229 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\main\settings.py changed, reloading.
+2021-10-22 15:14:10,735 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-10-22 15:15:40,704 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\main\settings.py changed, reloading.
+2021-10-22 15:15:41,222 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-10-22 15:16:11,281 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\main\settings.py changed, reloading.
+2021-10-22 15:16:11,777 django.utils.autoreload INFO     Watching for file changes with StatReloader

@@ -20,13 +20,73 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = 'abc'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'console': {
+            'format': '%(name)-12s %(levelname)-8s %(message)s'
+        },
+        'file': {
+            'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'
+        }
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'console'
+        },
+        'info_file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'formatter': 'file',
+            'filename': 'logs/info.log'
+        },
+        'warning_file': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'formatter': 'file',
+            'filename': 'logs/warning.log'
+        },
+        'critical_file': {
+            'level': 'CRITICAL',
+            'class': 'logging.FileHandler',
+            'formatter': 'file',
+            'filename': 'logs/critical.log'
+        },
+        'db_file': {
+            'level': 'CRITICAL',
+            'class': 'logging.FileHandler',
+            'formatter': 'file',
+            'filename': 'logs/db.log'
+        }
+    },
+    'loggers': {
+        'django.request': {
+            'level': 'WARNING',
+            'handlers': ['warning_file']
+        },
+        'django.server': {
+            'level': 'CRITICAL',
+            'handlers': ['critical_file'],
+        },
+        'django.db.backends': {
+            'level': 'CRITICAL',
+            'handlers': ['console', 'db_file']
+        },
+        '': {
+            'level': 'INFO',
+            'handlers': ['info_file']
+        }
+    }
+}
 
 # Application definition
 
@@ -83,11 +143,11 @@ WSGI_APPLICATION = 'main.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
+        'NAME': 'bloguru',
+        'USER': 'postgres',
+        'PASSWORD': '2787831ra',
+        'HOST': 'localhost',
+        'PORT': '5432',
 
     }
 }

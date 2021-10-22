@@ -1,1 +1,1 @@
-web: gunicorn instamiligram.wsgi:application
+web: gunicorn main.wsgi:application
