@@ -29,3 +29,281 @@
 2021-10-22 16:23:17,243 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2021-10-22 16:27:26,765 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2021-10-22 16:32:15,205 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-08 19:20:21,260 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-08 19:20:38,227 django.request ERROR    Internal Server Error: /login/
+Traceback (most recent call last):
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\users\views.py", line 37, in post
+    login(request, user)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\contrib\auth\__init__.py", line 135, in login
+    user_logged_in.send(sender=user.__class__, request=request, user=user)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\dispatch\dispatcher.py", line 180, in send
+    return [
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\dispatch\dispatcher.py", line 181, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\contrib\auth\models.py", line 22, in update_last_login
+    user.save(update_fields=['last_login'])
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\contrib\auth\base_user.py", line 67, in save
+    super().save(*args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\db\models\base.py", line 726, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\db\models\base.py", line 774, in save_base
+    post_save.send(
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\dispatch\dispatcher.py", line 180, in send
+    return [
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\dispatch\dispatcher.py", line 181, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\users\signals.py", line 15, in save_profile
+    instance.profile.save()
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\users\models.py", line 26, in save
+    img = Image.open(self.image.path)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\PIL\Image.py", line 2975, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\tarlo\\Desktop\\Code\\DJANGO\\instamiligram\\media\\profile_pics\\650812.jpg'
+2021-11-08 19:20:38,397 django.request WARNING  Not Found: /favicon.ico
+2021-11-08 19:21:03,491 django.request ERROR    Internal Server Error: /login/
+Traceback (most recent call last):
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\users\views.py", line 37, in post
+    login(request, user)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\contrib\auth\__init__.py", line 135, in login
+    user_logged_in.send(sender=user.__class__, request=request, user=user)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\dispatch\dispatcher.py", line 180, in send
+    return [
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\dispatch\dispatcher.py", line 181, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\contrib\auth\models.py", line 22, in update_last_login
+    user.save(update_fields=['last_login'])
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\contrib\auth\base_user.py", line 67, in save
+    super().save(*args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\db\models\base.py", line 726, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\db\models\base.py", line 774, in save_base
+    post_save.send(
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\dispatch\dispatcher.py", line 180, in send
+    return [
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\dispatch\dispatcher.py", line 181, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\users\signals.py", line 15, in save_profile
+    instance.profile.save()
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\users\models.py", line 26, in save
+    img = Image.open(self.image.path)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\PIL\Image.py", line 2975, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\tarlo\\Desktop\\Code\\DJANGO\\instamiligram\\media\\profile_pics\\650812.jpg'
+2021-11-08 19:21:46,347 django.request WARNING  Not Found: /media/post_pics/1016619_ywWHyLs.jpg
+2021-11-08 19:21:46,349 django.request WARNING  Not Found: /media/profile_pics/650812.jpg
+2021-11-08 19:21:46,353 django.request WARNING  Not Found: /media/post_pics/Без_названия_sIJlGzm.jfif
+2021-11-08 19:21:55,918 django.request WARNING  Not Found: /media/profile_pics/650812.jpg
+2021-11-08 19:21:55,921 django.request WARNING  Not Found: /media/post_pics/1016619_ywWHyLs.jpg
+2021-11-08 19:21:55,926 django.request WARNING  Not Found: /media/post_pics/Без_названия_sIJlGzm.jfif
+2021-11-08 19:22:02,870 django.request WARNING  Not Found: /media/profile_pics/650812.jpg
+2021-11-08 19:22:02,879 django.request WARNING  Not Found: /media/post_pics/1016619_ywWHyLs.jpg
+2021-11-08 19:22:02,883 django.request WARNING  Not Found: /media/post_pics/Без_названия_sIJlGzm.jfif
+2021-11-08 19:22:05,252 django.request WARNING  Not Found: /media/profile_pics/650812.jpg
+2021-11-08 19:22:05,256 django.request WARNING  Not Found: /media/post_pics/1016619_ywWHyLs.jpg
+2021-11-08 19:22:05,260 django.request WARNING  Not Found: /media/post_pics/Без_названия_sIJlGzm.jfif
+2021-11-08 19:27:08,121 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-08 19:27:26,940 django.request WARNING  Not Found: /media/profile_pics/650812.jpg
+2021-11-08 19:27:26,953 django.request WARNING  Not Found: /media/post_pics/Без_названия_sIJlGzm.jfif
+2021-11-08 19:27:26,958 django.request WARNING  Not Found: /media/post_pics/1016619_ywWHyLs.jpg
+2021-11-08 19:28:37,600 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-08 19:28:50,484 django.request ERROR    Internal Server Error: /admin/login/
+Traceback (most recent call last):
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\views\decorators\cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\contrib\admin\sites.py", line 414, in login
+    return LoginView.as_view(**defaults)(request)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\utils\decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\views\decorators\debug.py", line 89, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\utils\decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\utils\decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\utils\decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\views\decorators\cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\contrib\auth\views.py", line 63, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\contrib\auth\views.py", line 92, in form_valid
+    auth_login(self.request, form.get_user())
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\contrib\auth\__init__.py", line 135, in login
+    user_logged_in.send(sender=user.__class__, request=request, user=user)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\dispatch\dispatcher.py", line 180, in send
+    return [
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\dispatch\dispatcher.py", line 181, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\contrib\auth\models.py", line 22, in update_last_login
+    user.save(update_fields=['last_login'])
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\contrib\auth\base_user.py", line 67, in save
+    super().save(*args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\db\models\base.py", line 726, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\db\models\base.py", line 774, in save_base
+    post_save.send(
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\dispatch\dispatcher.py", line 180, in send
+    return [
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\dispatch\dispatcher.py", line 181, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\users\signals.py", line 15, in save_profile
+    instance.profile.save()
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\users\models.py", line 26, in save
+    img = Image.open(self.image.path)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\PIL\Image.py", line 2975, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\tarlo\\Desktop\\Code\\DJANGO\\instamiligram\\media\\profile_pics\\650812.jpg'
+2021-11-08 19:29:39,426 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-08 19:29:41,232 django.security.csrf WARNING  Forbidden (CSRF token missing or incorrect.): /admin/login/
+2021-11-08 19:29:53,313 django.request ERROR    Internal Server Error: /admin/login/
+Traceback (most recent call last):
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\views\decorators\cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\contrib\admin\sites.py", line 414, in login
+    return LoginView.as_view(**defaults)(request)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\utils\decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\views\decorators\debug.py", line 89, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\utils\decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\utils\decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\utils\decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\views\decorators\cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\contrib\auth\views.py", line 63, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\contrib\auth\views.py", line 92, in form_valid
+    auth_login(self.request, form.get_user())
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\contrib\auth\__init__.py", line 135, in login
+    user_logged_in.send(sender=user.__class__, request=request, user=user)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\dispatch\dispatcher.py", line 180, in send
+    return [
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\dispatch\dispatcher.py", line 181, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\contrib\auth\models.py", line 22, in update_last_login
+    user.save(update_fields=['last_login'])
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\contrib\auth\base_user.py", line 67, in save
+    super().save(*args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\db\models\base.py", line 726, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\db\models\base.py", line 774, in save_base
+    post_save.send(
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\dispatch\dispatcher.py", line 180, in send
+    return [
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\dispatch\dispatcher.py", line 181, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\users\signals.py", line 15, in save_profile
+    instance.profile.save()
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\users\models.py", line 26, in save
+    img = Image.open(self.image.path)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\PIL\Image.py", line 2975, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\tarlo\\Desktop\\Code\\DJANGO\\instamiligram\\media\\profile_pics\\650812.jpg'
+2021-11-08 19:30:01,676 django.security.csrf WARNING  Forbidden (CSRF token missing or incorrect.): /admin/login/
+2021-11-08 19:30:06,834 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-08 19:30:10,442 django.request ERROR    Internal Server Error: /admin/login/
+Traceback (most recent call last):
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\PIL\JpegImagePlugin.py", line 629, in _save
+    rawmode = RAWMODE[im.mode]
+KeyError: 'RGBA'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\views\decorators\cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\contrib\admin\sites.py", line 414, in login
+    return LoginView.as_view(**defaults)(request)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\utils\decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\views\decorators\debug.py", line 89, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\utils\decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\utils\decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\utils\decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\views\decorators\cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\contrib\auth\views.py", line 63, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\contrib\auth\views.py", line 92, in form_valid
+    auth_login(self.request, form.get_user())
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\contrib\auth\__init__.py", line 135, in login
+    user_logged_in.send(sender=user.__class__, request=request, user=user)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\dispatch\dispatcher.py", line 180, in send
+    return [
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\dispatch\dispatcher.py", line 181, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\contrib\auth\models.py", line 22, in update_last_login
+    user.save(update_fields=['last_login'])
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\contrib\auth\base_user.py", line 67, in save
+    super().save(*args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\db\models\base.py", line 726, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\db\models\base.py", line 774, in save_base
+    post_save.send(
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\dispatch\dispatcher.py", line 180, in send
+    return [
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\django\dispatch\dispatcher.py", line 181, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\users\signals.py", line 15, in save_profile
+    instance.profile.save()
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\users\models.py", line 30, in save
+    i.save(self.image.path)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\PIL\Image.py", line 2240, in save
+    save_handler(self, fp, filename)
+  File "C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\venv\lib\site-packages\PIL\JpegImagePlugin.py", line 631, in _save
+    raise OSError(f"cannot write mode {im.mode} as JPEG") from e
+OSError: cannot write mode RGBA as JPEG
+2021-11-08 19:31:13,739 django.utils.autoreload INFO     Watching for file changes with StatReloader
