@@ -1007,3 +1007,45 @@ Traceback (most recent call last):
 django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '{{range}}' from '{{range}}'
 2021-11-10 15:33:51,857 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2021-11-10 15:34:41,545 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-10 22:09:54,476 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-10 22:10:04,955 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-10 22:10:06,782 django.request WARNING  Not Found: /favicon.ico
+2021-11-10 22:10:18,920 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-10 22:10:22,293 django.request ERROR    Internal Server Error: /login/
+Traceback (most recent call last):
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\Python\instamiligram\users\views.py", line 37, in post
+    login(request, user)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\auth\__init__.py", line 135, in login
+    user_logged_in.send(sender=user.__class__, request=request, user=user)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\dispatch\dispatcher.py", line 180, in send
+    return [
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\dispatch\dispatcher.py", line 181, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\auth\models.py", line 22, in update_last_login
+    user.save(update_fields=['last_login'])
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\auth\base_user.py", line 67, in save
+    super().save(*args, **kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\base.py", line 726, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\base.py", line 774, in save_base
+    post_save.send(
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\dispatch\dispatcher.py", line 180, in send
+    return [
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\dispatch\dispatcher.py", line 181, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "C:\Users\tarlo\Desktop\Code\Python\instamiligram\users\signals.py", line 15, in save_profile
+    instance.profile.save()
+  File "C:\Users\tarlo\Desktop\Code\Python\instamiligram\users\models.py", line 26, in save
+    img = Image.open(self.image.path)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\PIL\Image.py", line 2975, in open
+    fp = builtins.open(filename, "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\tarlo\\Desktop\\Code\\Python\\instamiligram\\media\\profile_pics\\1_L3q3XCs.jpg'
+2021-11-10 22:11:01,071 django.utils.autoreload INFO     Watching for file changes with StatReloader
