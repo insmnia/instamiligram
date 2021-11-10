@@ -231,7 +231,7 @@ class SavedPostsView(LoginRequiredMixin, View):
 
 class SearchUser(View):
     def post(self, request, *args, **kwargs):
-        name = request.POST.get('name')
+        name = request.POST.get('name').replace('@', '')
         users = User.objects.filter(username__contains=name).all()
         data = [user.username for user in users]
         return JsonResponse({'users': data})

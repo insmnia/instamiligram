@@ -1,109 +1,109 @@
-{% extends "instagram/layout.html" %}
-{% load crispy_forms_tags %}
-{% load tags %}
-{% block content %}
+{% extends "instagram/layout.html" %} {% load crispy_forms_tags %}
 <!-- user vars -->
-{% get_user_posts user as posts %}
-{% load static %}
-<div class="row">
-    <img src="{{user.profile.bg_image.url}}" alt="" style="max-height: 350px;">
+{% load tags %} {% get_user_posts user as posts %} {% load static %}
+<a href=""></a>
+{%block content %}
 
+<div class="row">
+  <img src="{{user.profile.bg_image.url}}" alt="" style="max-height: 350px;" />
 </div>
-<div class="row" style="position: relative;margin-bottom: 1vh;">
-    <div class="col-sm">
-        <div class="img-circle">
-            <img src="{{user.profile.image.url}}" alt="">
-        </div>
+<div class="row" style="position: relative; margin-bottom: 1vh;">
+  <div class="col-sm">
+    <div class="img-circle">
+      <img src="{{user.profile.image.url}}" alt="" />
     </div>
-    <div class="col-sm" style="text-align: right;">
-        <!-- FIXME сделать другую кнопку -->
-        {% if request.user == user %}
-        <a href="{% url 'user:settings' %}" class="Mybtn">
-            <small>Edit Profile</small>
-        </a>
-        {% else %}
-        {% is_following request.user user as flw %}
-        {% if flw %}
-        <button id="follow-btn" class="btn-uf" value="{{ user.id }}">
-            <small id="btn-txt">Unfollow</small>
-        </button>
-        {% else %}
-        <button id="follow-btn" class="btn-f" value="{{ user.id }}">
-            <small id="btn-txt">Follow</small>
-        </button>
-        {% endif %}
-        {% endif %}
-    </div>
+  </div>
+  <div class="col-sm" style="text-align: right;">
+    <!-- FIXME сделать другую кнопку -->
+    {% if request.user == user %}
+    <a href="{% url 'user:settings' %}" class="Mybtn">
+      <small>Edit Profile</small>
+    </a>
+    {% else %} {% is_following request.user user as flw %} {% if flw %}
+    <button id="follow-btn" class="btn-uf" value="{{ user.id }}">
+      <small id="btn-txt">Unfollow</small>
+    </button>
+    {% else %}
+    <button id="follow-btn" class="btn-f" value="{{ user.id }}">
+      <small id="btn-txt">Follow</small>
+    </button>
+    {% endif %} {% endif %}
+  </div>
 </div>
 <div class="row mr-2">
-    <div class="col-sm">
-        <b style="font-size:x-large;">{{user.first_name}}</b>
-        <small>@{{user.username}}</small>
-    </div>
-    <div class="col-sm">
-
-    </div>
-    <div class="col-sm">
-
-    </div>
+  <div class="col-sm">
+    <b style="font-size: x-large;">{{user.first_name}}</b>
+    <small>@{{user.username}}</small>
+  </div>
+  <div class="col-sm"></div>
+  <div class="col-sm"></div>
 </div>
 <div class="row mb-4">
-    <div class="col-sm">
-        <small id="followers" style='font-size: 14px;'>{{user.profile.followers.count}} Followers</small>
-        <small style='font-size: 14px;'>{{user.profile.following.count}} Following</small>
-    </div>
+  <div class="col-sm">
+    <small id="followers" style="font-size: 14px;">
+      {{user.profile.followers.count}} Followers
+    </small>
+    <small style="font-size: 14px;">
+      {{user.profile.following.count}} Following
+    </small>
+  </div>
 </div>
-<hr>
+<hr />
 <div class="row">
-    {% for post in posts %}
-    <div class="col-lg-6 mb-1" style="padding:2px;">
-        <a href="{% url 'instagram:post-detail' post.id %}"><img src="{{post.image.url}}" alt=""
-                class="img-fluid rounded shadow-sm"></a>
-    </div>
-    {% endfor %}
+  {% for post in posts %}
+  <div class="col-lg-6 mb-1" style="padding: 2px;">
+    <a href="{% url 'instagram:post-detail' post.id %}">
+      <img
+        src="{{post.image.url}}"
+        alt=""
+        class="img-fluid rounded shadow-sm"
+      />
+    </a>
+  </div>
+  {% endfor %}
 </div>
 <script>
-    function getCookie(name) {
-        var cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            var cookies = document.cookie.split(';');
-            for (var i = 0; i < cookies.length; i++) {
-                var cookie = jQuery.trim(cookies[i]);
-                // Does this cookie string begin with the name we want?
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
+  function getCookie(name) {
+    var cookieValue = null
+    if (document.cookie && document.cookie !== '') {
+      var cookies = document.cookie.split(';')
+      for (var i = 0; i < cookies.length; i++) {
+        var cookie = jQuery.trim(cookies[i])
+        // Does this cookie string begin with the name we want?
+        if (cookie.substring(0, name.length + 1) === name + '=') {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
+          break
         }
-        return cookieValue;
+      }
     }
-    $(document).on('click', '#follow-btn', (e) => {
-        e.preventDefault();
-        $.ajax({
-            type: "POST",
-            url: '{% url "user:follow" %}',
-            data: {
-                id: $('#follow-btn').val(),
-                csrfmiddlewaretoken: getCookie('csrftoken'),
-                action: 'post'
-            },
-            success: (json) => {
-                document.getElementById("followers").innerHTML = json['result'] + ' Followers';
-                cls = ''
-                if (json['flw']) {
-                    cls = "btn-uf"
-                    txt = "Unfollow"
-                }
-                else {
-                    cls = "btn-f"
-                    txt = "Follow"
-                }
-                document.getElementById("follow-btn").className = cls;
-                document.getElementById("btn-txt").innerHTML = txt;
-            },
-            error: (xhr, errmsg, err) => { }
-        });
+    return cookieValue
+  }
+  $(document).on('click', '#follow-btn', (e) => {
+    e.preventDefault()
+    $.ajax({
+      type: 'POST',
+      url: '{% url "user:follow" %}',
+      data: {
+        id: $('#follow-btn').val(),
+        csrfmiddlewaretoken: getCookie('csrftoken'),
+        action: 'post',
+      },
+      success: (json) => {
+        document.getElementById('followers').innerHTML =
+          json['result'] + ' Followers'
+        cls = ''
+        if (json['flw']) {
+          cls = 'btn-uf'
+          txt = 'Unfollow'
+        } else {
+          cls = 'btn-f'
+          txt = 'Follow'
+        }
+        document.getElementById('follow-btn').className = cls
+        document.getElementById('btn-txt').innerHTML = txt
+      },
+      error: (xhr, errmsg, err) => {},
     })
+  })
 </script>
 {% endblock content %}

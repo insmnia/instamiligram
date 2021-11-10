@@ -179,8 +179,8 @@
   // ajax
   $(document).on('keyup', '#isearch', (e) => {
     let text = $("#isearch").val()
-    if (text != '' && text != '#') {
-      if (!(text[0] === "#")) {
+    if (text[0] === '@' || text[0] === '#') {
+      if (text[0]==='@') {
         $.ajax({
           type: 'POST',
           url: '{% url "instagram:search-user" %}',

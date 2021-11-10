@@ -1,9 +1,7 @@
-{% extends 'instagram/layout.html' %}
-{% block content %}
-{% if not posts %}
-    <h2>You haven't got {{post_type}}. Try to explore them!</h2>
-{% endif %}
-{% for object in posts %}
-{% include 'instagram/_post.html' %}
-{% endfor %}
-{% endblock content %}
+{% extends 'instagram/layout.html' %} {% block content %} {% if not posts %}
+{%if post_type %}
+<h2>You haven't got {{post_type}}. Try to explore them!</h2>
+{% else %}
+<h2>There are no posts(</h2>
+{% endif %} {% endif %} {% for object in posts %} {% include
+'instagram/_post.html' %} {% endfor %} {% endblock content %}
