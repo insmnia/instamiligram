@@ -1,8 +1,13 @@
-{% extends "instagram/layout.html" %} {% load crispy_forms_tags %}
+{% extends "instagram/layout.html" %}
+<!--  -->
+{% load crispy_forms_tags %}
 <!-- user vars -->
-{% load tags %} {% get_user_posts user as posts %} {% load static %}
-<a href=""></a>
-{%block content %}
+{% load user_tags %} 
+<!--  -->
+{% get_user_posts user as posts %}
+<!--  -->
+{% load static %}
+{% block content %}
 
 <div class="row">
   <img src="{{user.profile.bg_image.url}}" alt="" style="max-height: 350px;" />
@@ -14,7 +19,6 @@
     </div>
   </div>
   <div class="col-sm" style="text-align: right;">
-    <!-- FIXME сделать другую кнопку -->
     {% if request.user == user %}
     <a href="{% url 'user:settings' %}" class="Mybtn">
       <small>Edit Profile</small>

@@ -4,14 +4,14 @@ from .models import Message
 
 class SendMessageForm(forms.ModelForm):
 
-    text = forms.CharField(widget=forms.Textarea(
+    text = forms.CharField(widget=forms.TextInput(
         attrs={
             'class': 'form-control',
             'placeholder': 'Write your message',
             'rows': 2,
             'columns': 30,
-            'type': 'submit',
-            'id': 'send-msg'
+            'type': 'text',
+            'id': 'send-msg',
         }
     ))
 

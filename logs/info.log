@@ -1787,3 +1787,436 @@ Traceback (most recent call last):
 TypeError: unsupported operand type(s) for +: 'QuerySet' and 'QuerySet'
 2021-11-12 18:24:51,132 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\DJANGO\instamiligram\chat\views.py changed, reloading.
 2021-11-12 18:24:51,629 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:11:27,204 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:11:48,115 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:11:50,627 django.request WARNING  Not Found: /favicon.ico
+2021-11-12 22:13:10,971 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\forms.py changed, reloading.
+2021-11-12 22:13:11,310 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:13:12,461 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\forms.py changed, reloading.
+2021-11-12 22:13:12,804 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:14:46,721 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\forms.py changed, reloading.
+2021-11-12 22:14:47,084 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:18:37,284 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:20:19,460 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\forms.py changed, reloading.
+2021-11-12 22:20:19,800 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:20:44,538 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:21:00,248 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\forms.py changed, reloading.
+2021-11-12 22:21:00,602 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:21:14,376 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\forms.py changed, reloading.
+2021-11-12 22:21:14,749 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:21:18,132 django.security.csrf WARNING  Forbidden (CSRF token missing or incorrect.): /chat/koji1
+2021-11-12 22:22:14,657 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:25:57,060 django.request ERROR    Internal Server Error: /profile/a
+Traceback (most recent call last):
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 470, in parse
+    compile_func = self.tags[command]
+KeyError: 'get_user_posts'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\Python\instamiligram\users\views.py", line 108, in get
+    return render(request, "users/profile.html", {"user": User.objects.filter(username=username).first()})
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loaders\base.py", line 29, in get_template
+    return Template(
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 278, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 472, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 531, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 3: 'get_user_posts'. Did you forget to register or load this tag?
+2021-11-12 22:26:19,696 django.request ERROR    Internal Server Error: /profile/a
+Traceback (most recent call last):
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 470, in parse
+    compile_func = self.tags[command]
+KeyError: 'get_user_posts'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\Python\instamiligram\users\views.py", line 108, in get
+    return render(request, "users/profile.html", {"user": User.objects.filter(username=username).first()})
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loaders\base.py", line 29, in get_template
+    return Template(
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 278, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 472, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 531, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 3: 'get_user_posts'. Did you forget to register or load this tag?
+2021-11-12 22:26:59,897 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:27:00,807 django.request ERROR    Internal Server Error: /profile/a
+Traceback (most recent call last):
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 470, in parse
+    compile_func = self.tags[command]
+KeyError: 'get_user_posts'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\Python\instamiligram\users\views.py", line 108, in get
+    return render(request, "users/profile.html", {"user": User.objects.filter(username=username).first()})
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loaders\base.py", line 29, in get_template
+    return Template(
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 278, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 472, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 531, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 5: 'get_user_posts'. Did you forget to register or load this tag?
+2021-11-12 22:27:34,260 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:27:35,716 django.request ERROR    Internal Server Error: /profile/a
+Traceback (most recent call last):
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 470, in parse
+    compile_func = self.tags[command]
+KeyError: 'get_user_posts'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\Python\instamiligram\users\views.py", line 108, in get
+    return render(request, "users/profile.html", {"user": User.objects.filter(username=username).first()})
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loaders\base.py", line 29, in get_template
+    return Template(
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 278, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 472, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 531, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 7: 'get_user_posts'. Did you forget to register or load this tag?
+2021-11-12 22:30:16,392 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:38:14,551 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py changed, reloading.
+2021-11-12 22:38:14,895 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:38:53,196 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py changed, reloading.
+2021-11-12 22:38:53,532 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:38:55,833 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py changed, reloading.
+2021-11-12 22:38:56,177 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:39:00,524 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py changed, reloading.
+2021-11-12 22:39:00,865 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:39:02,129 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py changed, reloading.
+2021-11-12 22:39:02,460 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:39:12,924 django.request ERROR    Internal Server Error: /chat/koji
+Traceback (most recent call last):
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py", line 40, in get
+    return render(request, 'chat/chat-dialog.html', context={
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\defaulttags.py", line 446, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\base.py", line 86, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\resolvers.py", line 694, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'send_message' not found. 'send_message' is not a valid view function or pattern name.
+2021-11-12 22:39:47,089 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\urls.py changed, reloading.
+2021-11-12 22:39:47,444 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:40:54,692 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:41:13,153 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:41:15,886 django.request WARNING  Method Not Allowed (POST): /chat/sendmsg
+2021-11-12 22:41:15,887 django.request WARNING  Method Not Allowed: /chat/sendmsg
+2021-11-12 22:44:23,987 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py changed, reloading.
+2021-11-12 22:44:24,326 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:44:28,183 django.request WARNING  Method Not Allowed (POST): /chat/sendmsg
+2021-11-12 22:44:28,184 django.request WARNING  Method Not Allowed: /chat/sendmsg
+2021-11-12 22:46:42,723 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py changed, reloading.
+2021-11-12 22:46:43,090 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:46:48,339 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\urls.py changed, reloading.
+2021-11-12 22:46:48,677 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:46:53,942 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\urls.py changed, reloading.
+2021-11-12 22:46:54,287 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:47:05,192 django.request WARNING  Method Not Allowed (POST): /chat/sendmsg
+2021-11-12 22:47:05,192 django.request WARNING  Method Not Allowed: /chat/sendmsg
+2021-11-12 22:47:24,479 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py changed, reloading.
+2021-11-12 22:47:24,812 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:47:28,475 django.request ERROR    Internal Server Error: /chat/sendmsg
+Traceback (most recent call last):
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\auth\mixins.py", line 71, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+TypeError: post() got an unexpected keyword argument 'username'
+2021-11-12 22:47:34,420 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py changed, reloading.
+2021-11-12 22:47:34,753 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:47:45,295 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py changed, reloading.
+2021-11-12 22:47:45,636 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:47:48,844 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\urls.py changed, reloading.
+2021-11-12 22:47:49,174 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:49:43,814 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py changed, reloading.
+2021-11-12 22:49:44,165 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:49:53,119 django.security.csrf WARNING  Forbidden (CSRF token missing or incorrect.): /chat/sendmsg
+2021-11-12 22:51:47,230 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py changed, reloading.
+2021-11-12 22:51:47,592 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:55:34,120 django.request WARNING  Method Not Allowed (POST): /chat/koji
+2021-11-12 22:55:34,120 django.request WARNING  Method Not Allowed: /chat/koji
+2021-11-12 22:56:29,136 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py changed, reloading.
+2021-11-12 22:56:29,468 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:57:56,952 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:57:58,476 django.request ERROR    Internal Server Error: /chat/koji
+Traceback (most recent call last):
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\auth\mixins.py", line 71, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py", line 41, in get
+    return render(request, 'chat/chat-dialog.html', context={
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\defaulttags.py", line 446, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\base.py", line 86, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\resolvers.py", line 694, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'send_message' not found. 'send_message' is not a valid view function or pattern name.
+2021-11-12 22:58:15,664 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:58:19,145 django.request ERROR    Internal Server Error: /chat/koji
+Traceback (most recent call last):
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\auth\mixins.py", line 71, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py", line 49, in post
+    target = User.objects.fiter(username=username).first()
+AttributeError: 'UserManager' object has no attribute 'fiter'
+2021-11-12 22:58:26,242 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py changed, reloading.
+2021-11-12 22:58:26,577 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:58:27,610 django.request ERROR    Internal Server Error: /chat/koji
+Traceback (most recent call last):
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\auth\mixins.py", line 71, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py", line 53, in post
+    return self.get()
+TypeError: get() missing 2 required positional arguments: 'request' and 'username'
+2021-11-12 22:58:35,050 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py changed, reloading.
+2021-11-12 22:58:35,396 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 22:59:40,644 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py changed, reloading.
+2021-11-12 22:59:40,999 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 23:01:13,063 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py changed, reloading.
+2021-11-12 23:01:13,397 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 23:02:59,869 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py changed, reloading.
+2021-11-12 23:03:00,219 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 23:04:37,983 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py changed, reloading.
+2021-11-12 23:04:38,315 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 23:05:33,175 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py changed, reloading.
+2021-11-12 23:05:33,503 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 23:05:51,284 django.request ERROR    Internal Server Error: /chats/
+Traceback (most recent call last):
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\auth\mixins.py", line 71, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py", line 27, in get
+    m1 = Message.objects.filter(recipient=_messages[i].recipient,sender=_messages[i].sender).first()
+TypeError: list indices must be integers or slices, not Message
+2021-11-12 23:06:16,114 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py changed, reloading.
+2021-11-12 23:06:16,460 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-12 23:07:36,025 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py changed, reloading.
+2021-11-12 23:07:36,387 django.utils.autoreload INFO     Watching for file changes with StatReloader

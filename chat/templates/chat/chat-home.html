@@ -20,6 +20,7 @@
     max-height: 56px;
     max-width: 56px;
     position: sticky;
+    margin-right: 5px;
   }
   .chat-link {
     text-decoration: none;
@@ -44,7 +45,7 @@
           class="chat-img-circle"
         />
         <div class="" style="font-size: 16px;">
-          <b style="font-size: medium;">{{msg.sender.username}} said:</b>
+          <b style="font-size: medium;">{{msg.sender}} said:</b>
           {% crop_msg msg.text as MsgText %} {{ MsgText }}
         </div>
       </div>
