@@ -3,5 +3,5 @@ This is a simple social-media app to train my skills in Django-framework. Some f
 ---
 ### TODO:
 1. Real-time chat between users.
-2. Followers and following pages (design with functionality).
+2. Followers and following pages (design with functionality). DONE
 3. Responsive design.
