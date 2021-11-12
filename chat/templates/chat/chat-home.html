@@ -1,0 +1,25 @@
+{% extends 'instagram/layout.html' %} {% block content %}
+<style>
+  .chats-window {
+    border: 1px black solid;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .chats-chat {
+    border: 0.25px grey solid;
+  }
+</style>
+<div class="row chats-window">
+  <div class="col-lg">
+    {% for msg in chat_messages %}
+    <div class="chats-chat mb-4">
+      {{msg.sender}}
+      <p>
+        {{ msg.text }}
+      </p>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<!--  -->
+{% endblock content %}

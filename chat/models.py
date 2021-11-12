@@ -1,18 +1,16 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.utils import timezone
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 
 class Message(models.Model):
-    sent = models.DateTimeField(default=timezone.now)
-    _from = models.OneToOneField(User, on_delete=models.CASCADE)
-    _to = models.OneToOneField(User, on_delete=models.CASCADE)
+    sender = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='messages_sent',)
+    recipient = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='messages_recieved',)
+    timestamp = models.DateTimeField(default=timezone.now, db_index=True)
+    text = models.TextField()
 
-
-class Dialog(models.Model):
-    interlocutor1 = models.OneToOneField(User, on_delete=models.CASCADE)
-    interlocutor2 = models.OneToOneField(User, on_delete=models.CASCADE)
-    messages = models.ForeignKey(
-        Message, on_delete=models.CASCADE, related_name='messages')
+    def __str__(self):
+        return f'{self.sender} sended to {self.recipient} at {self.timestamp}'
