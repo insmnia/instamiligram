@@ -1,23 +1,54 @@
-{% extends 'instagram/layout.html' %} {% block content %}
+{% extends 'instagram/layout.html' %} {% block content %} {% load chat_tags %}
 <style>
   .chats-window {
     border: 1px black solid;
     padding-top: 10px;
     padding-bottom: 10px;
+    border-radius: 10px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
   .chats-chat {
     border: 0.25px grey solid;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+  }
+  .chat-img-circle {
+    border: 3px solid white;
+    border-radius: 50%;
+    max-height: 56px;
+    max-width: 56px;
+    position: sticky;
+  }
+  .chat-link {
+    text-decoration: none;
+    color: black;
+  }
+  .chat-link:hover {
+    background: rgba(181, 172, 172, 0.517);
+    text-decoration: none;
   }
 </style>
 <div class="row chats-window">
   <div class="col-lg">
     {% for msg in chat_messages %}
-    <div class="chats-chat mb-4">
-      {{msg.sender}}
-      <p>
-        {{ msg.text }}
-      </p>
-    </div>
+    <a
+      href="{% url 'chat:chats-dialog' username=msg.sender.username %}"
+      style="text-decoration: none;"
+    >
+      <div class="chats-chat mb-4 chat-link">
+        <img
+          src="{{ msg.sender.profile.image.url }}"
+          alt=""
+          class="chat-img-circle"
+        />
+        <div class="" style="font-size: 16px;">
+          <b style="font-size: medium;">{{msg.sender.username}} said:</b>
+          {% crop_msg msg.text as MsgText %} {{ MsgText }}
+        </div>
+      </div>
+    </a>
     {% endfor %}
   </div>
 </div>

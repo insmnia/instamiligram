@@ -131,7 +131,8 @@ TEMPLATES = [
             ],
             'libraries':{
                 'instagram_tags': 'instagram.templatetags.tags',
-                'user_tags': 'users.templatetags.tags'
+                'user_tags': 'users.templatetags.tags',
+                'chat_tags': 'chat.templatetags.tags'
             }
         },
     },
@@ -147,7 +148,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'bloguru',
         'USER': 'postgres',
-        'PASSWORD': '8645',
+        'PASSWORD': '2787831ra',
         'HOST': 'localhost',
         'PORT': '5432',
 

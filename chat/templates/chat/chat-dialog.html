@@ -1,0 +1,101 @@
+{% extends 'instagram/layout.html' %} {% block content %}
+<style>
+  .chat-img-circle {
+    border: 3px solid white;
+    border-radius: 50%;
+    max-height: 48px;
+    max-width: 48px;
+    position: sticky;
+  }
+  .diag-header {
+    display: flex;
+    align-items: center;
+  }
+  .small-img-circle {
+    border-radius: 50%;
+    max-height: 24px;
+    max-width: 24px;
+    margin: 1px;
+  }
+  .right-al {
+    justify-content: right;
+    text-align: right;
+  }
+  .left-al {
+    justify-content: left;
+    text-align: left;
+  }
+  .right-al p {
+    padding: 0;
+    margin: 0;
+  }
+  .left-al p {
+    padding: 0;
+    margin: 0;
+  }
+  .right-al:hover {
+    background-color: antiquewhite;
+  }
+  .left-al:hover {
+    background-color: antiquewhite;
+  }
+  #send-msg {
+    width: 100%;
+    resize: vertical;
+    border-radius: 15px;
+    border: 0;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
+    height: 50px;
+  }
+</style>
+<div class="row" style="border: 1px black solid; border-radius: 10px;">
+  <!-- diag header -->
+  <div class="diag-header">
+    <div>
+      <img src="{{target.profile.image.url}}" class="chat-img-circle" alt="" />
+    </div>
+    <div>
+      <b>{{ target.username }}</b>
+    </div>
+  </div>
+  <div class="diag-window">
+    {% for msg in msgs %}
+    <!-- Сообщения от текущего пользователя справа, а от "цели" - слева -->
+    {% if msg.sender == request.user %}
+    <div style="display: flex; text-align: right; justify-content: right;">
+      <a href="" style="text-decoration: none; font-size: 18px;">
+        {{ msg.sender }}
+      </a>
+      <img
+        src="{{ msg.sender.profile.image.url }}"
+        alt=""
+        class="small-img-circle"
+      />
+    </div>
+    <div class="right-al mb-2">
+      <p style="font-size: 16px;">{{ msg.text }}</p>
+      <p style="font-size: 10px;">{{ msg.timestamp }}</p>
+    </div>
+    {% else %}
+    <div style="display: flex;">
+      <img
+        src="{{ msg.sender.profile.image.url }}"
+        alt=""
+        class="small-img-circle"
+      />
+      <a href="" style="text-decoration: none; font-size: 18px;">
+        {{ msg.sender }}
+      </a>
+    </div>
+    <div class="left-al mb-2">
+      <p style="font-size: 16px;">{{ msg.text }}</p>
+      <p style="font-size: 10px;">{{ msg.timestamp }}</p>
+    </div>
+    {% endif %} {% endfor %}
+  </div>
+  <div class="diad-sendmsg">
+    <hr />
+    <form action="" method="post"></form>
+  </div>
+</div>
+{% endblock content %}
