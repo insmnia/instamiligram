@@ -20,34 +20,6 @@
     margin: 1px;
   }
 
-  .right-al {
-    justify-content: right;
-    text-align: right;
-  }
-
-  .left-al {
-    justify-content: left;
-    text-align: left;
-  }
-
-  .right-al p {
-    padding: 0;
-    margin: 0;
-  }
-
-  .left-al p {
-    padding: 0;
-    margin: 0;
-  }
-
-  .right-al:hover {
-    background-color: antiquewhite;
-  }
-
-  .left-al:hover {
-    background-color: antiquewhite;
-  }
-
   #send-msg {
     width: 100%;
     resize: vertical;
@@ -56,6 +28,7 @@
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
     height: 50px;
     margin-bottom: 2px;
+      background: #e4b4ff;
   }
 </style>
 <div class="row" style="border: 1px black solid; border-radius: 10px;">
@@ -71,37 +44,49 @@
   <div class="diag-window">
     {% for msg in msgs %}
     <!-- Сообщения от текущего пользователя справа, а от "цели" - слева -->
-    {% if msg.sender == request.user %}
-    <div style="display: flex; text-align: right; justify-content: right;">
-      <a href="" style="text-decoration: none; font-size: 18px;">
-        {{ msg.sender }}
-      </a>
-      <img src="{{ msg.sender.profile.image.url }}" alt="" class="small-img-circle" />
-    </div>
-    <div class="right-al mb-2">
-      <p style="font-size: 16px;">{{ msg.text }}</p>
-      <p style="font-size: 10px;">{{ msg.timestamp }}</p>
-    </div>
-    {% else %}
-    <div style="display: flex;">
-      <img src="{{ msg.sender.profile.image.url }}" alt="" class="small-img-circle" />
+    <div style="">
       <a href="" style="text-decoration: none; font-size: 18px;">
         {{ msg.sender }}
       </a>
     </div>
-    <div class="left-al mb-2">
+    <div class="mb-2">
       <p style="font-size: 16px;">{{ msg.text }}</p>
       <p style="font-size: 10px;">{{ msg.timestamp }}</p>
     </div>
-    {% endif %} {% endfor %}
+    {% endfor %}
   </div>
   <div class="diad-sendmsg">
     <hr />
-    <form action="" method="post">
-      {%csrf_token%}
-      {{msg_form.text}}
-      <input type="submit" class="form-control" value="Send">
-    </form>
+{#    <form action="" method="post">#}
+{#      {%csrf_token%}#}
+{#      {{msg_form.text}}#}
+{#      <input type="submit" class="form-control" value="Send" id="send-message">#}
+{#    </form>#}
+      <input type="text" id="send-msg">
+      <button id="send-message" value="Send">Send</button>
   </div>
 </div>
+    <script>
+    const socket = new WebSocket(
+        'ws://'
+        +window.location.host
+        +'/chat/'
+        +'{{target.username}}'
+        +'/'
+    );
+    socket.onmessage = (e)=>{
+        const data = JSON.parse(e.data);
+        console.log(data);
+    };
+    document.querySelector('#send-message').onclick = (e)=>{
+        e.preventDefault();
+        const msg = document.querySelector('#send-msg').value;
+        socket.send(JSON.stringify({
+            'text':msg,
+            'sender':{{ request.user }},
+            'recipient':{{ target.username }}
+        }));
+        msg.value = '';
+    }
+    </script>
 {% endblock content %}

@@ -1964,3 +1964,13 @@ Traceback (most recent call last):
   File "C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py", line 27, in get
     m1 = Message.objects.filter(recipient=_messages[i].recipient,sender=_messages[i].sender).first()
 TypeError: list indices must be integers or slices, not Message
+2021-11-16 11:49:24,126 django.request WARNING  Not Found: /chat/
+2021-11-16 12:15:56,198 django.request WARNING  Not Found: /chat/
+2021-11-16 12:15:59,187 django.request WARNING  Not Found: /chat/a/
+2021-11-16 12:17:35,349 django.request WARNING  Not Found: /chat/a/
+2021-11-16 12:19:30,653 django.request WARNING  Not Found: /chat/a/
+2021-11-16 12:19:42,505 django.request WARNING  Not Found: /chat/a/
+2021-11-16 12:20:15,044 django.request WARNING  Not Found: /chat/a/
+2021-11-16 12:20:49,320 django.request WARNING  Not Found: /chat/a/
+2021-11-16 12:22:07,398 django.request WARNING  Not Found: /chat/a/
+2021-11-16 12:24:45,466 django.request WARNING  Not Found: /chat/a/
