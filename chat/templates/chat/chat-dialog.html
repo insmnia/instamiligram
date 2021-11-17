@@ -28,7 +28,7 @@
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
     height: 50px;
     margin-bottom: 2px;
-      background: #e4b4ff;
+    background: #e4b4ff;
   }
 </style>
 <div class="row" style="border: 1px black solid; border-radius: 10px;">
@@ -41,10 +41,15 @@
       <b id="target">{{ target.username }}</b>
     </div>
   </div>
+  <div class="diad-sendmsg">
+    <hr />
+    <input type="text" id="send-msg" />
+    <input id="send-message" class="form-control" type='submit' value="Send"></button>
+  </div>
   <div class="diag-window">
     {% for msg in msgs %}
     <!-- Сообщения от текущего пользователя справа, а от "цели" - слева -->
-    <div style="">
+    <div>
       <a href="" style="text-decoration: none; font-size: 18px;">
         {{ msg.sender }}
       </a>
@@ -55,38 +60,31 @@
     </div>
     {% endfor %}
   </div>
-  <div class="diad-sendmsg">
-    <hr />
-{#    <form action="" method="post">#}
-{#      {%csrf_token%}#}
-{#      {{msg_form.text}}#}
-{#      <input type="submit" class="form-control" value="Send" id="send-message">#}
-{#    </form>#}
-      <input type="text" id="send-msg">
-      <button id="send-message" value="Send">Send</button>
-  </div>
 </div>
-    <script>
-    const socket = new WebSocket(
-        'ws://'
-        +window.location.host
-        +'/chat/'
-        +'{{target.username}}'
-        +'/'
+<script>
+  const socket = new WebSocket(
+    'ws://' + window.location.host + '/wschat/' + '{{ target.username }}' + '/',
+  )
+  socket.onmessage = (e) => {
+    const data = JSON.parse(e.data);
+    console.log(data);
+    document.querySelector('.diag-window').insertAdjacentHTML(
+      'afterBegin',
+      '<div style=""><a href="" style="text-decoration: none; font-size: 18px;">'+ data['message']['sender'] +'</a></div>'
+      + '<div class="mb-2"> <p style="font-size: 16px;">'+data['message']['text']+'</p> <p style="font-size: 10px;">'+data['message']['timestamp']+'</p></div>'
     );
-    socket.onmessage = (e)=>{
-        const data = JSON.parse(e.data);
-        console.log(data);
-    };
-    document.querySelector('#send-message').onclick = (e)=>{
-        e.preventDefault();
-        const msg = document.querySelector('#send-msg').value;
-        socket.send(JSON.stringify({
-            'text':msg,
-            'sender':{{ request.user }},
-            'recipient':{{ target.username }}
-        }));
-        msg.value = '';
-    }
-    </script>
+  }
+  document.querySelector('#send-message').onclick = (e) => {
+    e.preventDefault()
+    const msg = document.querySelector('#send-msg').value;
+    socket.send(
+      JSON.stringify({
+        text: msg,
+        sender: '{{ request.user }}',
+        recipient: '{{ target.username }}',
+      }),
+    );
+    msg.value = '';
+  }
+</script>
 {% endblock content %}

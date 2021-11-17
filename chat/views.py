@@ -10,7 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 app_name = 'chat'
 
 
-class UserChatsView(LoginRequiredMixin,View):
+class UserChatsView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         msgs = request.user.messages_recieved.order_by('-timestamp').all()
         _messages = []
@@ -28,25 +28,25 @@ class UserChatsView(LoginRequiredMixin,View):
         )
 
 
-class DialogChatView(LoginRequiredMixin,View):
+class DialogChatView(LoginRequiredMixin, View):
     def get(self, request, username, *args, **kwargs):
         u_target = User.objects.filter(username=username).first()
         _messages = Message.objects.filter(
             sender=u_target, recipient=request.user).all()
         _messages2 = Message.objects.filter(
             sender=request.user, recipient=u_target).all()
-        msgs = _messages | _messages2
-        msgs.order_by('-timestamp')
+        msgs = (_messages | _messages2).order_by('-timestamp')
         return render(request, 'chat/chat-dialog.html', context={
             'target': u_target,
             'msgs': msgs,
             'msg_form': SendMessageForm()
         })
-    def post(self,request,username):
+
+    def post(self, request, username):
         form = SendMessageForm(request.POST or None)
         if form.is_valid():
             target = User.objects.filter(username=username).first()
             msg = Message(sender=request.user, recipient=target,
-                        text=request.POST.get('text'))
+                          text=request.POST.get('text'))
             msg.save()
-        return self.get(request,username)
+        return self.get(request, username)

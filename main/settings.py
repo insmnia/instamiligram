@@ -101,7 +101,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'instagram',
     'users',
-    'chat'
+    'chat',
+    'channels'
 ]
 
 MIDDLEWARE = [
@@ -155,7 +156,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'bloguru',
         'USER': 'postgres',
-        'PASSWORD': '8645',
+        'PASSWORD': '2787831ra',
         'HOST': 'localhost',
         'PORT': '5432',
 
