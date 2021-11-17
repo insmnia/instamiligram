@@ -1,17 +1,23 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-# Create your models here.
+from django.contrib.postgres.fields import ArrayField
+
 # TODO сделать общий чат для корректной работы сокетов
-
-
-class Message(models.Model):
-    sender = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='messages_sent',)
-    recipient = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='messages_recieved',)
-    timestamp = models.DateTimeField(default=timezone.now, db_index=True)
-    text = models.TextField()
+class Chat(models.Model):
+    name = models.CharField(max_length=100,unique=True,db_index=True)
+    # users.username in array
+    users = ArrayField(models.CharField(max_length=100),default=list)
 
     def __str__(self):
-        return f'{self.sender} sended to {self.recipient} at {self.timestamp}'
+        return self.name
+    
+
+class Message(models.Model):
+    sender = models.ForeignKey(User,on_delete=models.CASCADE)
+    text = models.TextField()
+    timestamp = models.DateTimeField(default=timezone.now)
+    related_chat = models.ForeignKey(Chat,on_delete=models.CASCADE,related_name='messages')
+
+    def __str__(self) -> str:
+        return f'{self.sender} sent on {self.timestamp}'

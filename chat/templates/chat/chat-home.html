@@ -33,22 +33,12 @@
 </style>
 <div class="row chats-window">
   <div class="col-lg">
-    {% for msg in chat_messages %}
+    {% for chat in chats %}
     <a
-      href="{% url 'chat:chats-dialog' username=msg.sender.username %}"
+      href="{% url 'chat:chats-dialog' chatname=chat.name %}"
       style="text-decoration: none;"
     >
-      <div class="chats-chat mb-4 chat-link">
-        <img
-          src="{{ msg.sender.profile.image.url }}"
-          alt=""
-          class="chat-img-circle"
-        />
-        <div class="" style="font-size: 16px;">
-          <b style="font-size: medium;">{{msg.sender}} said:</b>
-          {% crop_msg msg.text as MsgText %} {{ MsgText }}
-        </div>
-      </div>
+      {{chat.name}}
     </a>
     {% endfor %}
   </div>

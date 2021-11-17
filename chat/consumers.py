@@ -2,19 +2,20 @@ import json
 from channels.generic.websocket import AsyncWebsocketConsumer
 from channels.db import database_sync_to_async
 from django.contrib.auth.models import User
-from django.utils import timezone
 
-from .models import Message
+from chat.models import Chat, Message
+
 
 
 class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
-        self.chat_name = self.scope['url_route']['kwargs']['username']
+        self.chat_name = self.scope['url_route']['kwargs']['chatname']
         self.chat_group_name = 'chat_%s' % self.chat_name
         await self.channel_layer.group_add(
             self.chat_group_name,
             self.channel_name
         )
+        print(f'New connection on layer {self.chat_name} with gn {self.chat_group_name}')
         await self.accept()
 
     async def disconnect(self, code):
@@ -26,38 +27,43 @@ class ChatConsumer(AsyncWebsocketConsumer):
     async def receive(self, text_data=None, bytes_data=None):
         text_data_json = json.loads(text_data)
         sender = await self.get_user(text_data_json['sender'])
-        recipient = await self.get_user(text_data_json['recipient'])
         text = text_data_json['text']
-        message = await self.create_message(sender, recipient, text)
+        chatname = text_data_json['chatname']
+        new_msg = await self.create_msg(sender,text,chatname)
         data = {
-            'sender': message.sender.username,
-            'text': message.text,
-            'timestamp': 'just now'
+            'sender':new_msg.sender.username,
+            'text':new_msg.text,
+            'timestamp':'just now'
         }
         await self.channel_layer.group_send(
             self.chat_group_name,
             {
-                'type': 'chat_message',
-                'message': data
+                'type':'new_message',
+                'message':data
             }
         )
-
-    async def chat_message(self, event):
-        message = event['message']
-
+        
+    async def new_message(self,event):
+        msg = event['message']
         await self.send(text_data=json.dumps({
-            'message': message
+            'message':msg
         }))
 
-    @database_sync_to_async
-    def get_user(self, username):
-        return User.objects.filter(username=username).first()
 
     @database_sync_to_async
-    def create_message(self, sender, recipient, text):
+    def get_user(self,username):
+        return User.objects.filter(username=username).first()
+
+    # @database_sync_to_async
+    # def get_chat(self,chatname):
+    #     return Chat.objects.filter(name=chatname).first()
+
+    @database_sync_to_async
+    def create_msg(self,sender,text,chatname):
         msg = Message.objects.create(
             sender=sender,
-            recipient=recipient,
             text=text,
+            related_chat = Chat.objects.filter(name=chatname).first()
         )
         return msg
+    

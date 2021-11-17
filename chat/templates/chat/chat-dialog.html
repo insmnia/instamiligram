@@ -34,12 +34,7 @@
 <div class="row" style="border: 1px black solid; border-radius: 10px;">
   <!-- diag header -->
   <div class="diag-header">
-    <div>
-      <img src="{{target.profile.image.url}}" class="chat-img-circle" alt="" />
-    </div>
-    <div>
-      <b id="target">{{ target.username }}</b>
-    </div>
+    <h2>Dialog header</h2>
   </div>
   <div class="diad-sendmsg">
     <hr />
@@ -48,7 +43,6 @@
   </div>
   <div class="diag-window">
     {% for msg in msgs %}
-    <!-- Сообщения от текущего пользователя справа, а от "цели" - слева -->
     <div>
       <a href="" style="text-decoration: none; font-size: 18px;">
         {{ msg.sender }}
@@ -63,8 +57,8 @@
 </div>
 <script>
   const socket = new WebSocket(
-    'ws://' + window.location.host + '/wschat/' + '{{ target.username }}' + '/',
-  )
+    'ws://' + window.location.host + '/wschat/' + '{{ chatname }}' + '/'
+  );
   socket.onmessage = (e) => {
     const data = JSON.parse(e.data);
     console.log(data);
@@ -81,7 +75,7 @@
       JSON.stringify({
         text: msg,
         sender: '{{ request.user }}',
-        recipient: '{{ target.username }}',
+        chatname: '{{ chatname }}',
       }),
     );
     msg.value = '';
