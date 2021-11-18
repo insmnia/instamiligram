@@ -31,11 +31,18 @@
     text-decoration: none;
   }
 </style>
+<div class="make-chat">
+  {% for u in users %}
+    <a href="{% url 'chat:chats-create' who=request.user.username _with=u.username %}">
+      {{u.username}}
+    </a>
+  {% endfor %}
+</div>
 <div class="row chats-window">
   <div class="col-lg">
     {% for chat in chats %}
     <a
-      href="{% url 'chat:chats-dialog' chatname=chat.name %}"
+      href="{{ chat.get_absolute_url }}"
       style="text-decoration: none;"
     >
       {{chat.name}}

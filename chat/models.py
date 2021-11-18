@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib.postgres.fields import ArrayField
+from django.shortcuts import reverse
 
 # TODO сделать общий чат для корректной работы сокетов
 class Chat(models.Model):
@@ -11,6 +12,9 @@ class Chat(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse('chat:chats-dialog',kwargs={'chatname':self.name})
     
 
 class Message(models.Model):

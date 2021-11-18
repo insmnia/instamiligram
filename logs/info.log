@@ -5120,3 +5120,428 @@ TypeError: can not serialize 'User' object
 2021-11-17 23:32:47,474 django.channels.server INFO     [mHTTP GET /chat/admin-chat 200 [0.14, 127.0.0.1:63817][0m
 2021-11-17 23:32:47,505 django.channels.server INFO     WebSocket HANDSHAKING /wschat/admin-chat/ [127.0.0.1:61389]
 2021-11-17 23:32:47,539 django.channels.server INFO     WebSocket CONNECT /wschat/admin-chat/ [127.0.0.1:61389]
+2021-11-18 10:20:50,151 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-18 10:20:50,388 daphne.server INFO     HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+2021-11-18 10:20:50,388 daphne.server INFO     Configuring endpoint tcp:port=8000:interface=127.0.0.1
+2021-11-18 10:20:50,389 daphne.server INFO     Listening on TCP address 127.0.0.1:8000
+2021-11-18 10:20:51,221 django.channels.server INFO     [mHTTP GET / 200 [0.06, 127.0.0.1:65394][0m
+2021-11-18 10:20:51,316 django.request WARNING  Not Found: /favicon.ico
+2021-11-18 10:20:51,317 django.channels.server WARNING  [33mHTTP GET /favicon.ico 404 [0.02, 127.0.0.1:65394][0m
+2021-11-18 10:20:53,303 django.channels.server INFO     [mHTTP GET /chats/ 200 [0.04, 127.0.0.1:65394][0m
+2021-11-18 10:20:55,039 django.channels.server INFO     [mHTTP GET /chat/admin-chat 200 [0.05, 127.0.0.1:65394][0m
+2021-11-18 10:20:55,068 django.channels.server INFO     WebSocket HANDSHAKING /wschat/admin-chat/ [127.0.0.1:61997]
+2021-11-18 10:20:55,906 django.channels.server INFO     WebSocket DISCONNECT /wschat/admin-chat/ [127.0.0.1:61997]
+2021-11-18 10:21:18,543 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-18 10:21:18,668 daphne.server INFO     HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+2021-11-18 10:21:18,668 daphne.server INFO     Configuring endpoint tcp:port=8000:interface=127.0.0.1
+2021-11-18 10:21:18,669 daphne.server INFO     Listening on TCP address 127.0.0.1:8000
+2021-11-18 10:21:19,672 django.channels.server INFO     [mHTTP GET /profile/admin3 200 [0.05, 127.0.0.1:63839][0m
+2021-11-18 10:21:26,040 django.channels.server INFO     [mHTTP GET /profile/admin2 200 [0.04, 127.0.0.1:63839][0m
+2021-11-18 10:23:19,724 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py changed, reloading.
+2021-11-18 10:23:20,290 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-18 10:23:20,467 daphne.server INFO     HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+2021-11-18 10:23:20,467 daphne.server INFO     Configuring endpoint tcp:port=8000:interface=127.0.0.1
+2021-11-18 10:23:20,467 daphne.server INFO     Listening on TCP address 127.0.0.1:8000
+2021-11-18 10:28:34,500 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-18 10:28:34,641 daphne.server INFO     HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+2021-11-18 10:28:34,641 daphne.server INFO     Configuring endpoint tcp:port=8000:interface=127.0.0.1
+2021-11-18 10:28:34,642 daphne.server INFO     Listening on TCP address 127.0.0.1:8000
+2021-11-18 10:28:44,061 django.request ERROR    Internal Server Error: /profile/admin2
+Traceback (most recent call last):
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\asgiref\sync.py", line 482, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\asgiref\sync.py", line 444, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\asyncio\tasks.py", line 442, in wait_for
+    return await fut
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\asgiref\current_thread_executor.py", line 22, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\asgiref\sync.py", line 486, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\tarlo\Desktop\Code\Python\instamiligram\users\views.py", line 108, in get
+    return render(request, "users/profile.html", {"user": User.objects.filter(username=username).first()})
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loaders\base.py", line 29, in get_template
+    return Template(
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 278, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 216, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\defaulttags.py", line 965, in do_if
+    nodelist = parser.parse(('elif', 'else', 'endif'))
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\defaulttags.py", line 1387, in url
+    kwargs[name] = parser.compile_filter(value)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 563, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 662, in __init__
+    raise TemplateSyntaxError("Could not parse the remainder: '%s' "
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: ',' from 'request.user.username,'
+2021-11-18 10:28:44,070 django.channels.server ERROR    [35;1mHTTP GET /profile/admin2 500 [0.11, 127.0.0.1:52024][0m
+2021-11-18 10:28:51,675 django.channels.server INFO     [mHTTP GET /profile/admin2 200 [0.07, 127.0.0.1:52024][0m
+2021-11-18 10:29:00,989 django.channels.server INFO     [mHTTP GET /profile/admin2 200 [0.04, 127.0.0.1:52024][0m
+2021-11-18 10:29:11,033 django.channels.server INFO     [mHTTP GET /profile/admin2 200 [0.04, 127.0.0.1:52024][0m
+2021-11-18 10:29:13,854 django.request ERROR    Internal Server Error: /chat/create/admin3/admin2
+Traceback (most recent call last):
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\asgiref\sync.py", line 482, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\asgiref\sync.py", line 444, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\asyncio\tasks.py", line 442, in wait_for
+    return await fut
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\asgiref\current_thread_executor.py", line 22, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\asgiref\sync.py", line 486, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\auth\mixins.py", line 71, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+TypeError: get() got an unexpected keyword argument 'with'
+2021-11-18 10:29:13,859 django.channels.server ERROR    [35;1mHTTP GET /chat/create/admin3/admin2 500 [0.06, 127.0.0.1:52024][0m
+2021-11-18 10:29:22,750 django.request ERROR    Internal Server Error: /chat/create/admin3/admin2
+Traceback (most recent call last):
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\asgiref\sync.py", line 482, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\asgiref\sync.py", line 444, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\asyncio\tasks.py", line 442, in wait_for
+    return await fut
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\asgiref\current_thread_executor.py", line 22, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\asgiref\sync.py", line 486, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\auth\mixins.py", line 71, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+TypeError: get() got an unexpected keyword argument 'with'
+2021-11-18 10:29:22,754 django.channels.server ERROR    [35;1mHTTP GET /chat/create/admin3/admin2 500 [0.05, 127.0.0.1:52024][0m
+2021-11-18 10:29:32,899 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\urls.py changed, reloading.
+2021-11-18 10:29:33,461 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-18 10:29:33,588 daphne.server INFO     HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+2021-11-18 10:29:33,588 daphne.server INFO     Configuring endpoint tcp:port=8000:interface=127.0.0.1
+2021-11-18 10:29:33,589 daphne.server INFO     Listening on TCP address 127.0.0.1:8000
+2021-11-18 10:29:35,165 django.channels.server INFO     [32mHTTP GET /chat/create/admin3/admin2 302 [0.04, 127.0.0.1:58250][0m
+2021-11-18 10:29:35,317 django.channels.server INFO     [mHTTP GET /chat/admin3admin2 200 [0.15, 127.0.0.1:58250][0m
+2021-11-18 10:29:35,350 django.channels.server INFO     WebSocket HANDSHAKING /wschat/admin3admin2/ [127.0.0.1:63753]
+2021-11-18 10:29:37,614 daphne.server ERROR    Exception inside application: [Errno 10061] Connect call failed ('127.0.0.1', 6379)
+Traceback (most recent call last):
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels\staticfiles.py", line 44, in __call__
+    return await self.application(scope, receive, send)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels\routing.py", line 71, in __call__
+    return await application(scope, receive, send)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels\sessions.py", line 47, in __call__
+    return await self.inner(dict(scope, cookies=cookies), receive, send)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels\sessions.py", line 263, in __call__
+    return await self.inner(wrapper.scope, receive, wrapper.send)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels\auth.py", line 185, in __call__
+    return await super().__call__(scope, receive, send)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels\middleware.py", line 26, in __call__
+    return await self.inner(scope, receive, send)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels\routing.py", line 150, in __call__
+    return await application(
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels\consumer.py", line 94, in app
+    return await consumer(scope, receive, send)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels\consumer.py", line 58, in __call__
+    await await_many_dispatch(
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels\consumer.py", line 73, in dispatch
+    await handler(message)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels\generic\websocket.py", line 173, in websocket_connect
+    await self.connect()
+  File "C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\consumers.py", line 14, in connect
+    await self.channel_layer.group_add(
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels_redis\core.py", line 646, in group_add
+    async with self.connection(self.consistent_hash(group)) as connection:
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels_redis\core.py", line 902, in __aenter__
+    self.conn = await self.pool.pop()
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels_redis\core.py", line 93, in pop
+    conn = await self.create_conn(loop)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels_redis\core.py", line 79, in create_conn
+    return await aioredis.create_redis_pool(**kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\aioredis\commands\__init__.py", line 188, in create_redis_pool
+    pool = await create_pool(address, db=db,
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\aioredis\pool.py", line 58, in create_pool
+    await pool._fill_free(override_min=False)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\aioredis\pool.py", line 383, in _fill_free
+    conn = await self._create_new_connection(self._address)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\aioredis\connection.py", line 111, in create_connection
+    reader, writer = await asyncio.wait_for(open_connection(
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\asyncio\tasks.py", line 442, in wait_for
+    return await fut
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\aioredis\stream.py", line 23, in open_connection
+    transport, _ = await get_event_loop().create_connection(
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 1056, in create_connection
+    raise exceptions[0]
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 1041, in create_connection
+    sock = await self._connect_sock(
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 955, in _connect_sock
+    await self.sock_connect(sock, address)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\asyncio\selector_events.py", line 502, in sock_connect
+    return await fut
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\asyncio\selector_events.py", line 537, in _sock_connect_cb
+    raise OSError(err, f'Connect call failed {address}')
+ConnectionRefusedError: [Errno 10061] Connect call failed ('127.0.0.1', 6379)
+2021-11-18 10:29:37,624 django.channels.server INFO     WebSocket DISCONNECT /wschat/admin3admin2/ [127.0.0.1:63753]
+2021-11-18 10:29:47,669 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-18 10:29:47,785 daphne.server INFO     HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+2021-11-18 10:29:47,785 daphne.server INFO     Configuring endpoint tcp:port=8000:interface=127.0.0.1
+2021-11-18 10:29:47,785 daphne.server INFO     Listening on TCP address 127.0.0.1:8000
+2021-11-18 10:29:47,901 django.channels.server INFO     [mHTTP GET /chat/admin3admin2 200 [0.05, 127.0.0.1:64489][0m
+2021-11-18 10:29:47,928 django.channels.server INFO     WebSocket HANDSHAKING /wschat/admin3admin2/ [127.0.0.1:58971]
+2021-11-18 10:29:50,815 daphne.server ERROR    Exception inside application: [Errno 10061] Connect call failed ('127.0.0.1', 6379)
+Traceback (most recent call last):
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels\consumer.py", line 73, in dispatch
+    await handler(message)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels\generic\websocket.py", line 173, in websocket_connect
+    await self.connect()
+  File "C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\consumers.py", line 14, in connect
+    await self.channel_layer.group_add(
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels_redis\core.py", line 646, in group_add
+    async with self.connection(self.consistent_hash(group)) as connection:
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels_redis\core.py", line 902, in __aenter__
+    self.conn = await self.pool.pop()
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels_redis\core.py", line 93, in pop
+    conn = await self.create_conn(loop)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels_redis\core.py", line 79, in create_conn
+    return await aioredis.create_redis_pool(**kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\aioredis\commands\__init__.py", line 188, in create_redis_pool
+    pool = await create_pool(address, db=db,
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\aioredis\pool.py", line 58, in create_pool
+    await pool._fill_free(override_min=False)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\aioredis\pool.py", line 383, in _fill_free
+    conn = await self._create_new_connection(self._address)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\aioredis\connection.py", line 111, in create_connection
+    reader, writer = await asyncio.wait_for(open_connection(
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\asyncio\tasks.py", line 442, in wait_for
+    return await fut
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\aioredis\stream.py", line 23, in open_connection
+    transport, _ = await get_event_loop().create_connection(
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 1056, in create_connection
+    raise exceptions[0]
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 1041, in create_connection
+    sock = await self._connect_sock(
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 955, in _connect_sock
+    await self.sock_connect(sock, address)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\asyncio\selector_events.py", line 502, in sock_connect
+    return await fut
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\asyncio\selector_events.py", line 537, in _sock_connect_cb
+    raise OSError(err, f'Connect call failed {address}')
+ConnectionRefusedError: [Errno 10061] Connect call failed ('127.0.0.1', 6379)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels\staticfiles.py", line 44, in __call__
+    return await self.application(scope, receive, send)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels\routing.py", line 71, in __call__
+    return await application(scope, receive, send)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels\sessions.py", line 47, in __call__
+    return await self.inner(dict(scope, cookies=cookies), receive, send)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels\sessions.py", line 263, in __call__
+    return await self.inner(wrapper.scope, receive, wrapper.send)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels\auth.py", line 185, in __call__
+    return await super().__call__(scope, receive, send)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels\middleware.py", line 26, in __call__
+    return await self.inner(scope, receive, send)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels\routing.py", line 150, in __call__
+    return await application(
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels\consumer.py", line 94, in app
+    return await consumer(scope, receive, send)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels\consumer.py", line 58, in __call__
+    await await_many_dispatch(
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels\utils.py", line 58, in await_many_dispatch
+    await task
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels_redis\core.py", line 492, in receive
+    message_channel, message = await self.receive_single(
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels_redis\core.py", line 547, in receive_single
+    content = await self._brpop_with_clean(
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels_redis\core.py", line 380, in _brpop_with_clean
+    async with self.connection(index) as connection:
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels_redis\core.py", line 902, in __aenter__
+    self.conn = await self.pool.pop()
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels_redis\core.py", line 93, in pop
+    conn = await self.create_conn(loop)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\channels_redis\core.py", line 79, in create_conn
+    return await aioredis.create_redis_pool(**kwargs)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\aioredis\commands\__init__.py", line 188, in create_redis_pool
+    pool = await create_pool(address, db=db,
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\aioredis\pool.py", line 58, in create_pool
+    await pool._fill_free(override_min=False)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\aioredis\pool.py", line 383, in _fill_free
+    conn = await self._create_new_connection(self._address)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\aioredis\connection.py", line 111, in create_connection
+    reader, writer = await asyncio.wait_for(open_connection(
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\asyncio\tasks.py", line 442, in wait_for
+    return await fut
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\site-packages\aioredis\stream.py", line 23, in open_connection
+    transport, _ = await get_event_loop().create_connection(
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 1056, in create_connection
+    raise exceptions[0]
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 1041, in create_connection
+    sock = await self._connect_sock(
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 955, in _connect_sock
+    await self.sock_connect(sock, address)
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\asyncio\selector_events.py", line 502, in sock_connect
+    return await fut
+  File "C:\Users\tarlo\AppData\Local\Programs\Python\Python39\lib\asyncio\selector_events.py", line 537, in _sock_connect_cb
+    raise OSError(err, f'Connect call failed {address}')
+ConnectionRefusedError: [Errno 10061] Connect call failed ('127.0.0.1', 6379)
+2021-11-18 10:29:50,820 django.channels.server INFO     WebSocket DISCONNECT /wschat/admin3admin2/ [127.0.0.1:58971]
+2021-11-18 10:30:13,073 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-18 10:30:13,214 daphne.server INFO     HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+2021-11-18 10:30:13,214 daphne.server INFO     Configuring endpoint tcp:port=8000:interface=127.0.0.1
+2021-11-18 10:30:13,215 daphne.server INFO     Listening on TCP address 127.0.0.1:8000
+2021-11-18 10:30:14,883 django.channels.server INFO     [mHTTP GET /chat/admin3admin2 200 [0.05, 127.0.0.1:63817][0m
+2021-11-18 10:30:14,910 django.channels.server INFO     WebSocket HANDSHAKING /wschat/admin3admin2/ [127.0.0.1:64871]
+2021-11-18 10:30:14,963 django.channels.server INFO     WebSocket CONNECT /wschat/admin3admin2/ [127.0.0.1:64871]
+2021-11-18 10:30:24,787 django.channels.server INFO     [mHTTP GET /chat/admin3admin2 200 [0.07, 127.0.0.1:63817][0m
+2021-11-18 10:30:24,791 django.channels.server INFO     WebSocket DISCONNECT /wschat/admin3admin2/ [127.0.0.1:64871]
+2021-11-18 10:30:24,814 django.channels.server INFO     WebSocket HANDSHAKING /wschat/admin3admin2/ [127.0.0.1:49266]
+2021-11-18 10:30:24,847 django.channels.server INFO     WebSocket CONNECT /wschat/admin3admin2/ [127.0.0.1:49266]
+2021-11-18 10:30:30,138 django.channels.server INFO     [32mHTTP GET /admin/ 302 [0.04, 127.0.0.1:63817][0m
+2021-11-18 10:30:30,303 django.channels.server INFO     [mHTTP GET /admin/login/?next=/admin/ 200 [0.16, 127.0.0.1:63817][0m
+2021-11-18 10:30:30,317 django.channels.server INFO     [36mHTTP GET /static/admin/css/base.css 304 [0.00, 127.0.0.1:63817][0m
+2021-11-18 10:30:30,319 django.channels.server INFO     [36mHTTP GET /static/admin/css/nav_sidebar.css 304 [0.01, 127.0.0.1:53258][0m
+2021-11-18 10:30:30,321 django.channels.server INFO     [36mHTTP GET /static/admin/js/nav_sidebar.js 304 [0.01, 127.0.0.1:59304][0m
+2021-11-18 10:30:30,323 django.channels.server INFO     [36mHTTP GET /static/admin/css/login.css 304 [0.01, 127.0.0.1:57737][0m
+2021-11-18 10:30:30,325 django.channels.server INFO     [36mHTTP GET /static/admin/css/responsive.css 304 [0.01, 127.0.0.1:64248][0m
+2021-11-18 10:30:30,637 django.channels.server INFO     [32mHTTP GET /admin/ 302 [0.03, 127.0.0.1:64248][0m
+2021-11-18 10:30:30,680 django.channels.server INFO     [mHTTP GET /admin/login/?next=/admin/ 200 [0.04, 127.0.0.1:64248][0m
+2021-11-18 10:30:30,685 django.channels.server INFO     WebSocket DISCONNECT /wschat/admin3admin2/ [127.0.0.1:49266]
+2021-11-18 10:30:30,709 django.channels.server INFO     [36mHTTP GET /static/admin/css/fonts.css 304 [0.00, 127.0.0.1:64248][0m
+2021-11-18 10:30:30,732 django.channels.server INFO     [36mHTTP GET /static/admin/fonts/Roboto-Regular-webfont.woff 304 [0.00, 127.0.0.1:64248][0m
+2021-11-18 10:30:30,734 django.channels.server INFO     [36mHTTP GET /static/admin/fonts/Roboto-Light-webfont.woff 304 [0.00, 127.0.0.1:57737][0m
+2021-11-18 10:30:30,736 django.channels.server INFO     [36mHTTP GET /static/admin/fonts/Roboto-Bold-webfont.woff 304 [0.01, 127.0.0.1:59304][0m
+2021-11-18 10:30:31,948 django.channels.server INFO     [mHTTP POST /admin/login/?next=/admin/ 200 [0.14, 127.0.0.1:59304][0m
+2021-11-18 10:30:34,520 django.channels.server INFO     [mHTTP POST /admin/login/?next=/admin/ 200 [0.14, 127.0.0.1:59304][0m
+2021-11-18 10:30:37,105 django.channels.server INFO     [32mHTTP POST /admin/login/?next=/admin/ 302 [0.15, 127.0.0.1:59304][0m
+2021-11-18 10:30:37,249 django.channels.server INFO     [mHTTP GET /admin/ 200 [0.14, 127.0.0.1:59304][0m
+2021-11-18 10:30:37,268 django.channels.server INFO     [36mHTTP GET /static/admin/css/dashboard.css 304 [0.00, 127.0.0.1:59304][0m
+2021-11-18 10:30:37,277 django.channels.server INFO     [36mHTTP GET /static/admin/img/icon-addlink.svg 304 [0.00, 127.0.0.1:59304][0m
+2021-11-18 10:30:37,278 django.channels.server INFO     [36mHTTP GET /static/admin/img/icon-changelink.svg 304 [0.00, 127.0.0.1:57737][0m
+2021-11-18 10:30:37,280 django.channels.server INFO     [36mHTTP GET /static/admin/img/icon-deletelink.svg 304 [0.00, 127.0.0.1:64248][0m
+2021-11-18 10:30:40,971 django.channels.server INFO     [mHTTP GET /admin/chat/chat/ 200 [0.05, 127.0.0.1:64248][0m
+2021-11-18 10:30:40,995 django.channels.server INFO     [36mHTTP GET /static/admin/css/changelists.css 304 [0.00, 127.0.0.1:64248][0m
+2021-11-18 10:30:40,998 django.channels.server INFO     [36mHTTP GET /static/admin/js/jquery.init.js 304 [0.00, 127.0.0.1:53258][0m
+2021-11-18 10:30:41,000 django.channels.server INFO     [36mHTTP GET /static/admin/js/vendor/jquery/jquery.js 304 [0.01, 127.0.0.1:59304][0m
+2021-11-18 10:30:41,002 django.channels.server INFO     [36mHTTP GET /static/admin/js/core.js 304 [0.01, 127.0.0.1:63817][0m
+2021-11-18 10:30:41,005 django.channels.server INFO     [36mHTTP GET /static/admin/js/admin/RelatedObjectLookups.js 304 [0.01, 127.0.0.1:62912][0m
+2021-11-18 10:30:41,044 django.channels.server INFO     [mHTTP GET /admin/jsi18n/ 200 [0.05, 127.0.0.1:57737][0m
+2021-11-18 10:30:41,045 django.channels.server INFO     [36mHTTP GET /static/admin/js/actions.js 304 [0.05, 127.0.0.1:64248][0m
+2021-11-18 10:30:41,047 django.channels.server INFO     [36mHTTP GET /static/admin/js/urlify.js 304 [0.05, 127.0.0.1:53258][0m
+2021-11-18 10:30:41,048 django.channels.server INFO     [36mHTTP GET /static/admin/js/prepopulate.js 304 [0.05, 127.0.0.1:59304][0m
+2021-11-18 10:30:41,050 django.channels.server INFO     [36mHTTP GET /static/admin/js/vendor/xregexp/xregexp.js 304 [0.05, 127.0.0.1:63817][0m
+2021-11-18 10:30:41,068 django.channels.server INFO     [36mHTTP GET /static/admin/img/tooltag-add.svg 304 [0.00, 127.0.0.1:63817][0m
+2021-11-18 10:30:43,122 django.channels.server INFO     [mHTTP GET /admin/chat/chat/3/change/ 200 [0.05, 127.0.0.1:63817][0m
+2021-11-18 10:30:43,142 django.channels.server INFO     [36mHTTP GET /static/admin/css/forms.css 304 [0.00, 127.0.0.1:63817][0m
+2021-11-18 10:30:43,144 django.channels.server INFO     [36mHTTP GET /static/admin/js/prepopulate_init.js 304 [0.00, 127.0.0.1:53258][0m
+2021-11-18 10:30:43,176 django.channels.server INFO     [mHTTP GET /admin/jsi18n/ 200 [0.04, 127.0.0.1:59304][0m
+2021-11-18 10:30:43,177 django.channels.server INFO     [36mHTTP GET /static/admin/css/widgets.css 304 [0.03, 127.0.0.1:53258][0m
+2021-11-18 10:30:43,180 django.channels.server INFO     [36mHTTP GET /static/admin/js/change_form.js 304 [0.00, 127.0.0.1:59304][0m
+2021-11-18 10:30:43,263 django.channels.server INFO     [mHTTP GET /static/admin/img/tooltag-arrowright.svg 200 [0.07, 127.0.0.1:59304][0m
+2021-11-18 10:33:03,525 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-18 10:33:03,677 daphne.server INFO     HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+2021-11-18 10:33:03,677 daphne.server INFO     Configuring endpoint tcp:port=8000:interface=127.0.0.1
+2021-11-18 10:33:03,678 daphne.server INFO     Listening on TCP address 127.0.0.1:8000
+2021-11-18 10:33:07,299 django.channels.server INFO     [mHTTP GET / 200 [0.05, 127.0.0.1:61341][0m
+2021-11-18 10:33:10,688 django.channels.server INFO     [mHTTP GET /chats/ 200 [0.04, 127.0.0.1:61341][0m
+2021-11-18 10:33:15,717 django.channels.server INFO     [mHTTP POST /usearch/ 200 [0.03, 127.0.0.1:61341][0m
+2021-11-18 10:33:15,751 django.channels.server INFO     [mHTTP POST /usearch/ 200 [0.03, 127.0.0.1:60800][0m
+2021-11-18 10:33:16,017 django.channels.server INFO     [mHTTP POST /usearch/ 200 [0.03, 127.0.0.1:60800][0m
+2021-11-18 10:33:17,112 django.channels.server INFO     [mHTTP GET /profile/admin2 200 [0.04, 127.0.0.1:60800][0m
+2021-11-18 10:33:18,346 django.channels.server INFO     [mHTTP POST /follow/ 200 [0.05, 127.0.0.1:60800][0m
+2021-11-18 10:33:21,394 django.channels.server INFO     [mHTTP GET /chats/ 200 [0.04, 127.0.0.1:60800][0m
+2021-11-18 10:33:22,752 django.channels.server INFO     [32mHTTP GET /chat/create/admin/admin2 302 [0.04, 127.0.0.1:60800][0m
+2021-11-18 10:33:22,791 django.channels.server INFO     [mHTTP GET /chat/adminadmin2 200 [0.04, 127.0.0.1:60800][0m
+2021-11-18 10:33:22,819 django.channels.server INFO     WebSocket HANDSHAKING /wschat/adminadmin2/ [127.0.0.1:62853]
+2021-11-18 10:33:22,866 django.channels.server INFO     WebSocket CONNECT /wschat/adminadmin2/ [127.0.0.1:62853]
+2021-11-18 10:33:27,950 django.channels.server INFO     WebSocket DISCONNECT /wschat/adminadmin2/ [127.0.0.1:62853]
+2021-11-18 10:33:29,117 django.channels.server INFO     [mHTTP GET /chats/ 200 [0.14, 127.0.0.1:60800][0m
+2021-11-18 10:34:00,127 django.utils.autoreload INFO     C:\Users\tarlo\Desktop\Code\Python\instamiligram\chat\views.py changed, reloading.
+2021-11-18 10:34:00,700 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2021-11-18 10:34:00,868 daphne.server INFO     HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+2021-11-18 10:34:00,868 daphne.server INFO     Configuring endpoint tcp:port=8000:interface=127.0.0.1
+2021-11-18 10:34:00,869 daphne.server INFO     Listening on TCP address 127.0.0.1:8000
+2021-11-18 10:34:04,702 django.channels.server INFO     [mHTTP GET /admin/ 200 [0.07, 127.0.0.1:51432][0m
+2021-11-18 10:34:04,737 django.channels.server INFO     [36mHTTP GET /static/admin/img/icon-deletelink.svg 304 [0.00, 127.0.0.1:51432][0m
+2021-11-18 10:34:05,972 django.channels.server INFO     [mHTTP GET /admin/chat/chat/ 200 [0.08, 127.0.0.1:51432][0m
+2021-11-18 10:34:06,022 django.channels.server INFO     [mHTTP GET /admin/jsi18n/ 200 [0.03, 127.0.0.1:51432][0m
+2021-11-18 10:34:10,032 django.channels.server INFO     [mHTTP POST /admin/chat/chat/ 200 [0.07, 127.0.0.1:51432][0m
+2021-11-18 10:34:10,957 django.channels.server INFO     [32mHTTP POST /admin/chat/chat/ 302 [0.04, 127.0.0.1:51432][0m
+2021-11-18 10:34:11,004 django.channels.server INFO     [mHTTP GET /admin/chat/chat/ 200 [0.05, 127.0.0.1:51432][0m
+2021-11-18 10:34:11,053 django.channels.server INFO     [mHTTP GET /admin/jsi18n/ 200 [0.03, 127.0.0.1:51432][0m
+2021-11-18 10:34:11,069 django.channels.server INFO     [36mHTTP GET /static/admin/img/icon-yes.svg 304 [0.00, 127.0.0.1:51432][0m
+2021-11-18 10:34:13,954 django.channels.server INFO     [mHTTP GET /chats/ 200 [0.04, 127.0.0.1:51432][0m
+2021-11-18 10:34:15,353 django.channels.server INFO     [32mHTTP GET /chat/create/admin/admin2 302 [0.04, 127.0.0.1:51432][0m
+2021-11-18 10:34:15,391 django.channels.server INFO     [mHTTP GET /chat/admin-admin2 200 [0.03, 127.0.0.1:51432][0m
+2021-11-18 10:34:15,425 django.channels.server INFO     WebSocket HANDSHAKING /wschat/admin-admin2/ [127.0.0.1:51118]
+2021-11-18 10:34:15,476 django.channels.server INFO     WebSocket CONNECT /wschat/admin-admin2/ [127.0.0.1:51118]
+2021-11-18 10:34:17,552 django.channels.server INFO     WebSocket DISCONNECT /wschat/admin-admin2/ [127.0.0.1:51118]
+2021-11-18 10:34:18,595 django.channels.server INFO     [mHTTP GET /chats/ 200 [0.04, 127.0.0.1:51432][0m
+2021-11-18 10:34:21,483 django.channels.server INFO     [mHTTP POST /usearch/ 200 [0.03, 127.0.0.1:51432][0m
+2021-11-18 10:34:21,511 django.channels.server INFO     [mHTTP POST /usearch/ 200 [0.04, 127.0.0.1:60993][0m
+2021-11-18 10:34:22,373 django.channels.server INFO     [mHTTP GET /profile/admin3 200 [0.04, 127.0.0.1:60993][0m
+2021-11-18 10:34:23,415 django.channels.server INFO     [32mHTTP GET /chat/create/admin/admin3 302 [0.04, 127.0.0.1:60993][0m
+2021-11-18 10:34:23,453 django.channels.server INFO     [mHTTP GET /chat/admin-admin3 200 [0.04, 127.0.0.1:60993][0m
+2021-11-18 10:34:23,480 django.channels.server INFO     WebSocket HANDSHAKING /wschat/admin-admin3/ [127.0.0.1:57633]
+2021-11-18 10:34:23,511 django.channels.server INFO     WebSocket CONNECT /wschat/admin-admin3/ [127.0.0.1:57633]
+2021-11-18 10:34:30,308 django.channels.server INFO     [mHTTP GET /chats/ 200 [0.04, 127.0.0.1:60993][0m
+2021-11-18 10:34:30,313 django.channels.server INFO     WebSocket DISCONNECT /wschat/admin-admin3/ [127.0.0.1:57633]
+2021-11-18 10:35:16,273 django.channels.server INFO     WebSocket HANDSHAKING /wschat/admin-admin3/ [127.0.0.1:60563]
+2021-11-18 10:35:16,304 django.channels.server INFO     WebSocket CONNECT /wschat/admin-admin3/ [127.0.0.1:60563]
+2021-11-18 10:35:16,786 django.channels.server INFO     WebSocket DISCONNECT /wschat/admin-admin3/ [127.0.0.1:60563]

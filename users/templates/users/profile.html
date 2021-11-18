@@ -32,6 +32,9 @@
       <small id="btn-txt">Follow</small>
     </button>
     {% endif %} {% endif %}
+    {% if request.user != user %}
+      <a href="{% url 'chat:chats-create' who=request.user.username _with=user.username %}">Send Message</a>
+    {% endif %}
   </div>
 </div>
 <div class="row mr-2">
